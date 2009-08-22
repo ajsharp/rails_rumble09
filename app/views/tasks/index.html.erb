@@ -1,14 +1,19 @@
-<% if @tasks.blank? %>
-  <p>There are not any tasks currently in the system.</p>
-<% else %>
-  <p>These are the current tasks in our system</p>
-  <ul id="tasks">
-    <% for task in @tasks %>
-      <li>
-        <%= link_to( task.title, edit_task_path(task)) -%>
-        <%= link_to(image_tag('icons/delete.png', {:size => "15x15"}), task_path(task), :confirm => "Are you sure?", :method => :delete) %>
-      </li>
-    <% end %>
+<div id="tabs">
+  <ul>
+  	<li><a href="#created-tasks">Created Tasks</a></li>
+  	<li><a href="#assigned-tasks">Assigned Tasks</a></li>
   </ul>
-<% end %>
+    <div id="created-tasks">
+      <h2>Tasks I've Created</h2>
+      <ul id="created-tasks-list">
+        <%= render :partial => 'list', :locals => { :tasks => @created_tasks } %>
+      </ul>
+    </div>
+    <div id="assigned-tasks">
+      <h2>Tasks I'm Assigned</h2>
+      <ul id="assigned-tasks-list">
+        <%= render :partial => 'list', :locals => { :tasks => @assigned_tasks } %>
+      </ul>
+    </div>
+  </div>
   <p><%= link_to "Add new task", {:action => 'new' }%></p>

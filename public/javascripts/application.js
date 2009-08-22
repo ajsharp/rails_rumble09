@@ -27,4 +27,6 @@ $(document).ready(function() {
       $("#assign_name").show();
     }
   })
+  
+  $("#tabs").tabs();
 })

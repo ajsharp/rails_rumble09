@@ -1,0 +1,10 @@
+<% if tasks.blank? %>
+  <li>There are not any tasks currently in the system.</li>
+<% else %>
+  <% for task in tasks %>
+    <li>
+      <%= link_to( task.title, edit_task_path(task)) -%>
+      <%= link_to(image_tag('icons/delete.png', {:size => "15x15"}), task_path(task), :confirm => "Are you sure?", :method => :delete) %>
+    </li>
+  <% end %>
+<% end %>

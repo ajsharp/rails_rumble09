@@ -2,7 +2,8 @@ class TasksController < ApplicationController
   before_filter :login_required
   
   def index
-    @tasks = Task.find_all_by_creator_id(current_user.id)
+    @created_tasks = Task.find_all_by_creator_id(current_user.id)
+    @assigned_tasks = current_user.tasks
   end
   
   def new
@@ -18,20 +19,21 @@ class TasksController < ApplicationController
       render :action => 'new'
     end
   end
-  
+
   def edit
     @task = Task.find(params[:id])
   end
-  
+
   def update
     @task = Task.find(params[:id])
     if @task.update_attributes(params[:task])
-        redirect_to :action => 'index'
-     else
-        render :action => 'edit'
-     end
+      redirect_to :action => 'index'
+    else
+      flash[:error]  = ""
+      render :action => 'edit'
+    end
   end
-  
+
   def destroy
     @task = Task.find(params[:id])
     if @task.destroy

@@ -9,22 +9,23 @@
 		<meta name="robots" content="all" />	
 		<meta name="resource-type" content="document" />
 		<meta name="MSSmartTagsPreventParsing" content="true" />
-		<%= stylesheet_link_tag 'base' %>
+		<%= stylesheet_link_tag 'reset', 'text', '960', 'application' %>
 		<%= javascript_include_tag :defaults %>
 	</head>
 	<body>
-		<div id="container">
-			<div id="header">
+		<div id="container" class="container_12 clearfix">
+			<div id="header" class="grid_12 alpha omega clearfix">
 				<ul>
+				  <li><%= link_to 'Home', root_path %></li>
 					<% if logged_in? %>
-					<li><%= link_to 'Logout', logout_path %></li>
+					  <li><%= link_to 'Logout', logout_path %></li>
 					<% else %>
-					<li><%= link_to 'Login', login_path %></li>
-					<li><%= link_to 'Signup', signup_path %></li>
+					  <li><%= link_to 'Login', login_path %></li>
+					  <li><%= link_to 'Signup', signup_path %></li>
 					<% end %>
 				</ul>
 			</div>
-			<div id="content">
+			<div id="content" class="grid_12 alpha omega clearfix">
 				<%= flash_messages %>
 				<%= yield :layout %>
 			</div>

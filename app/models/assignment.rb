@@ -1,4 +1,4 @@
 class Assignment < ActiveRecord::Base
-  belongs_to :users
-  belongs_to :tasks
+  belongs_to :user
+  belongs_to :task
 end

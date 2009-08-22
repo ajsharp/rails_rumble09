@@ -4,7 +4,10 @@
   <p>These are the current tasks in our system</p>
   <ul id="tasks">
     <% for task in @tasks %>
-      <li><%= task.title -%></li>
+      <li>
+        <%= link_to( task.title, edit_task_path(task)) -%>
+        <%= link_to(image_tag('icons/delete.png', {:size => "15x15"}), task_path(task), :confirm => "Are you sure?", :method => :delete) %>
+      </li>
     <% end %>
   </ul>
 <% end %>

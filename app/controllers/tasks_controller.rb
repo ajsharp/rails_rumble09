@@ -31,4 +31,13 @@ class TasksController < ApplicationController
         render :action => 'edit'
      end
   end
+  
+  def destroy
+    @task = Task.find(params[:id])
+    if @task.destroy
+      redirect_to :action => 'index'
+    else
+      render :action => 'index'
+    end
+  end
 end

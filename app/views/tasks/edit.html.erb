@@ -12,7 +12,7 @@
 				<%= f.text_area :description %>
 			</li>
 			<li>
-				<%= f.label :action_by %>
+				<%= f.label :action_by, 'Action by Date' %>
 				<%= f.text_field :action_by %>
 			</li>
 			<li>
@@ -41,5 +41,6 @@
 	</fieldset>
 	<div class="buttons">
 		<%= submit_tag 'Update Task' %>
+		<%= link_to 'cancel', tasks_path %>
 	</div>
 <% end %>

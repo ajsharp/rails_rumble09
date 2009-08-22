@@ -40,6 +40,8 @@ class User < ActiveRecord::Base
                       :password => temp_password, 
                       :password_confirmation => temp_password, 
                       :name => params[:name])
+      # required to do things this way because of the way plugin works
+      @user.state = 'pending'
       @user.activation_code = activate_code
       @user.generated = true
       @user.save

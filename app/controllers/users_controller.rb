@@ -15,17 +15,28 @@ class UsersController < ApplicationController
     @user = current_user
   end
   
+  def update
+    @user = current_user
+    if @user.update_attributes(params[:user])
+      flash[:success] = 'User account updated!'
+      redirect_to dashboard_path
+    else
+      flash.now[:error] = 'There was an error updating your account.'
+      render :action => 'edit'
+    end
+  end
+  
   def activate
     logout_keeping_session!
     user = User.find_by_activation_code(params[:activation_code]) unless params[:activation_code].blank?
     case
     when (!params[:activation_code].blank?) && user && !user.active?
       user.activate!
-      # if it's a generated user, send them to complete their profile
       if user.generated
-        # TODO: forward them to edit profile
+        flash[:success] = "You're account has been activated! Sign in to see your tasks."
+      else
+        flash[:success] = "Signup complete! Please sign in to continue."
       end
-      flash[:notice] = "Signup complete! Please sign in to continue."
       redirect_to login_path
     when params[:activation_code].blank?
       flash[:error] = "The activation code was missing.  Please follow the URL from your email."

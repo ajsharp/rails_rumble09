@@ -1,5 +1,4 @@
-<% @user.password = @user.password_confirmation = nil %>
-<%= title "Create a New Account", :h2 %>
+<%= title "Edit Your Account", :h2 %>
 <% form_for @user do |f| %>
 	<%= f.error_messages %>
 	<fieldset>
@@ -13,6 +12,7 @@
 				<%= f.label :email, 'Email Address (this will be your username)' %>
 				<%= f.text_field :email %>
 			</li>
+			<li>Leave password blank unless you want to change.</li>
 			<li>
 				<%= f.label :password %>
 				<%= f.password_field :password %>
@@ -24,6 +24,6 @@
 		</ol>
 	</fieldset>
 	<div class="buttons">
-		<%= submit_tag 'Sign up' %>
+		<%= submit_tag 'Update Account' %>
 	</div>
 <% end %>

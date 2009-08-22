@@ -3,8 +3,8 @@
 <% else %>
   <p>These are the current tasks in our system</p>
   <ul id="tasks">
-    <% @tasks.each do |t| %>
-      <li><%= t.title -%></li>
+    <% for task in @tasks %>
+      <li><%= task.title -%></li>
     <% end %>
   </ul>
 <% end %>

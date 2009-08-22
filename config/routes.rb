@@ -1,4 +1,6 @@
-ActionController::Routing::Routes.draw do |map| 
+ActionController::Routing::Routes.draw do |map|
+  map.resources :activities
+ 
   # Restful Authentication Rewrites
   map.with_options :controller => 'sessions' do |m|
     m.logout '/logout', :action => 'destroy'
@@ -22,6 +24,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :connections, :collection => {:request_membership => [:get, :post]}
   map.resources :users
   map.resources :tasks
+  map.resources :activities
   map.resources :passwords
   map.resource :session
   

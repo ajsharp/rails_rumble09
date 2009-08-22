@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => :create
-  before_filter :login_required, :only => [:dashboard]
+  before_filter :login_required, :only => [:dashboard, :edit, :update]
   
   def new
     @user = User.new
@@ -11,12 +11,20 @@ class UsersController < ApplicationController
     create_new_user(params[:user])
   end
   
+  def edit
+    @user = current_user
+  end
+  
   def activate
     logout_keeping_session!
     user = User.find_by_activation_code(params[:activation_code]) unless params[:activation_code].blank?
     case
     when (!params[:activation_code].blank?) && user && !user.active?
       user.activate!
+      # if it's a generated user, send them to complete their profile
+      if user.generated
+        # TODO: forward them to edit profile
+      end
       flash[:notice] = "Signup complete! Please sign in to continue."
       redirect_to login_path
     when params[:activation_code].blank?

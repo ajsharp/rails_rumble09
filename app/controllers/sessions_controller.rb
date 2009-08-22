@@ -18,13 +18,13 @@ class SessionsController < ApplicationController
   protected
   
   def password_authentication
-    user = User.authenticate(params[:login], params[:password])
+    user = User.authenticate(params[:email], params[:password])
     if user
       self.current_user = user
       successful_login
     else
       note_failed_signin
-      @login = params[:login]
+      @email = params[:email]
       @remember_me = params[:remember_me]
       render :action => :new
     end

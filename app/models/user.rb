@@ -32,21 +32,26 @@ class User < ActiveRecord::Base
   attr_accessible :login, :email, :name, :password, :password_confirmation, :identity_url
   
   def self.find_or_create_new_user(params)
-    user = User.find_by_email(params[:email])
-    if user.nil?
+    @user = User.find_by_email(params[:email])
+    if @user.nil?
       temp_password = PhonemicPassword.generate(8)
-      User.create!(:email => params[:email], 
-                   :password => temp_password, 
-                   :password_confirmation => temp_password, 
-                   :name => params[:name])
-    else
-      user  
+      activate_code = Digest::SHA1.hexdigest(Time.now.to_s)
+      @user = User.new(:email => params[:email], 
+                      :password => temp_password, 
+                      :password_confirmation => temp_password, 
+                      :name => params[:name])
+      @user.activation_code = activate_code
+      @user.generated = true
+      @user.save
+      UserMailer.deliver_generated_signup_notification(@user, temp_password)
     end
+    
+    @user
   end
 
-  # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
-  def self.authenticate(login, password)
-    u = find_in_state :first, :active, :conditions => { :login => login } # need to get the salt
+  # Authenticates a user by their email and unencrypted password.  Returns the user or nil.
+  def self.authenticate(email, password)
+    u = find_in_state :first, :active, :conditions => { :email => email } # need to get the salt
     u && u.authenticated?(password) ? u : nil
   end
   

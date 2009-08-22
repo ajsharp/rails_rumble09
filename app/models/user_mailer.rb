@@ -5,6 +5,13 @@ class UserMailer < ActionMailer::Base
     @body[:url] = "#{APP_CONFIG[:site_url]}/activate/#{user.activation_code}"
   end
   
+  def generated_signup_notification(user, password)
+    setup_email(user)
+    @subject << "You've been assigned a task!"
+    @body[:url] = "#{APP_CONFIG[:site_url]}/activate/#{user.activation_code}"
+    @body[:password] = password
+  end
+  
   def activation(user)
     setup_email(user)
     @subject << 'Your account has been activated!'

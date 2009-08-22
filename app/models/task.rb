@@ -20,7 +20,7 @@ class Task < ActiveRecord::Base
     end
   
     def validate
-      if (self.action_by > self.due_date)
+      if (!self.action_by.blank? and !self.due_date.blank?) and (self.action_by > self.due_date)
         errors.add_to_base("Action By Date cannot be after Due Date!")
       end
     end

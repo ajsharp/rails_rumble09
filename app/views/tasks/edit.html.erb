@@ -28,7 +28,7 @@
 			<% f.fields_for @task.assignments.build do |assignment_form| %>
 			  <li>
 			    <label>Assign To:</label>
-			    <%= assignment_form.select :assignee_id, current_user.friends.collect { |u| [u.id, u.email] } %>
+			    <%= assignment_form.select :assignee_id, current_user.friends.collect { |u| [u.email, u.id] } %>
 			  </li>
 			  
 			  <li>

@@ -4,7 +4,7 @@
   <% for task in tasks %>
     <li>
       <%= link_to( task.title, edit_task_path(task)) -%>
-      <%= link_to(image_tag('icons/delete.png', {:size => "15x15"}), task_path(task), :confirm => "Are you sure?", :method => :delete) %>
+      <%= link_to(image_tag('icons/delete.png', {:size => "15x15"}), task_path(task), :confirm => "Are you sure?", :method => :delete) unless !current_user != task.creator %>
     </li>
   <% end %>
 <% end %>

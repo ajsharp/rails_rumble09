@@ -6,6 +6,12 @@ class UserTest < ActiveSupport::TestCase
       assert Factory.build(:user).valid?
       assert Factory(:user).save
     end
+    
+    should "not require the login field" do
+      assert Factory(:user, :login => nil).valid?
+    end
+    
+    should_validate_presence_of :email
   end # end of a valid User
   
 end

@@ -7,7 +7,6 @@ Factory.sequence :email do |n|
 end
 
 Factory.define :user do |f|
-  f.login                 { Factory.next(:name) }
   f.email                 { Factory.next(:email) }
   f.name                  "User Name"
   f.password              "password"

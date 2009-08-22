@@ -7,6 +7,7 @@ class Task < ActiveRecord::Base
   has_many :assigners, :through => :assignments
   has_many :assignees, :through => :assignments
   has_many :comments
+  has_many :activities
   
   before_save :check_for_new_assignee, :if => lambda { |m| m.new_assignee }
   

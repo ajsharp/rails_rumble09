@@ -26,6 +26,7 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :connections
   has_many :friends, :conditions => ["connections.status = ?", "accepted"], :through => :connections
+  has_many :activities
   
 
   # HACK HACK HACK -- how to do attr_accessible from here?

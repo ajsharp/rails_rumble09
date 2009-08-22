@@ -6,4 +6,11 @@ class Task < ActiveRecord::Base
   has_many :assignments
   has_many :users, :through => :assignments
   has_many :comments
+  
+  protected
+    def validate
+      if (self.action_by > self.due_date)
+        errors.add_to_base("Action By Date cannot be after Due Date!")
+      end
+    end
 end

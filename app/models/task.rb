@@ -15,6 +15,10 @@ class Task < ActiveRecord::Base
   
   attr_accessor :new_assignee, :assigner_id
   
+  def pretty_date(att)
+    send(att.to_sym).strftime("%b %e, %Y")
+  end
+  
   protected
     def check_for_new_assignee
       assignments.create!({ :assigner_id => assigner_id, :assignee_id => User.find_or_create_new_user(new_assignee).id })

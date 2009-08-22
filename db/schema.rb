@@ -9,7 +9,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080929171348) do
+ActiveRecord::Schema.define(:version => 20090822023329) do
+
+  create_table "comments", :force => true do |t|
+    t.integer  "task_id"
+    t.integer  "user_id"
+    t.text     "message"
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["task_id"], :name => "index_comments_on_task_id"
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "open_id_authentication_associations", :force => true do |t|
     t.integer "issued"

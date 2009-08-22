@@ -19,8 +19,10 @@ class User < ActiveRecord::Base
   # Relationships
   has_and_belongs_to_many :roles
   has_many :tasks, :foreign_key => "creator_id"
-  has_many :assignments
-  has_many :tasks, :through => :assignments
+  has_many :assignments_assigned, :class_name => "Assignment", :foreign_key => "assigner_id"
+  has_many :assignments, :class_name => "Assignment", :foreign_key => "assignee_id"
+  has_many :assigned_tasks, :through => :assignments, :source => :task
+  has_many :tasks_assigned, :through => :assignments_assigned, :source => :task
   has_many :comments
   has_many :connections
   has_many :friends, :conditions => ["connections.status = ?", "accepted"], :through => :connections

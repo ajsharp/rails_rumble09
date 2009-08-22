@@ -80,6 +80,16 @@ class TaskTest < ActiveSupport::TestCase
     end
   end # end of a user wants to view a pretty data
   
+  context "a user should be able to pass in an assigner_id" do
+    setup { @task = Factory(:task) }
+    
+    should "return assigner_id" do
+      @task.assigner_id = 1
+      assert_equal 1, @task.assigner_id
+    end
+  end # end of a user should be able to pass in an assigner_id
+  
+  
   
   
 end

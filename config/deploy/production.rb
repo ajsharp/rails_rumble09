@@ -3,7 +3,7 @@
 #############################################################
 
 set :application, "passthemonkey"
-set :deploy_to, "/var/www/apps"
+set :deploy_to, "/var/www/apps/#{application}"
 
 #############################################################
 #	Settings
@@ -19,7 +19,7 @@ set :rails_env, "production"
 #	Servers
 #############################################################
 
-set :user, "deploy"
+set :user, "travisr"
 set :domain, "69.164.192.63"
 server domain, :app, :web
 role :db, domain, :primary => true
@@ -38,19 +38,9 @@ set :deploy_via, :remote_cache
 #############################################################
 
 namespace :deploy do
-  desc "Create the database yaml file"
-  task :after_update_code do
-    db_config = <<-EOF
-    production:    
-      adapter: mysql
-      encoding: utf8
-      username: root
-      password: 
-      database: passthemonkey_production
-      host: localhost
-    EOF
-    
-    put db_config, "#{release_path}/config/database.yml"
+  desc "Symlink the database yaml file"
+  task :symlink_db do
+    run "ln -nfs #{shared_path}/system/database.yml #{release_path}/config/database.yml"
   end
     
   # Restart passenger on deploy
@@ -65,3 +55,5 @@ namespace :deploy do
   end
   
 end
+
+after 'deploy:update_code', 'deploy:symlink_db'

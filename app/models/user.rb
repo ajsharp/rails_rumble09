@@ -21,8 +21,8 @@ class User < ActiveRecord::Base
   has_many :tasks, :foreign_key => "creator_id"
   has_many :assignments_assigned, :class_name => "Assignment", :foreign_key => "assigner_id"
   has_many :assignments, :class_name => "Assignment", :foreign_key => "assignee_id"
-  has_many :assigned_tasks, :through => :assignments, :source => :task
-  has_many :tasks_assigned, :through => :assignments_assigned, :source => :task
+  has_many :assigned_tasks, :through => :assignments, :source => :task # tasks assigned to me
+  has_many :tasks_assigned, :through => :assignments_assigned, :source => :task # tasks assigned to other people
   has_many :comments
   has_many :connections
   has_many :friends, :conditions => ["connections.status = ?", "accepted"], :through => :connections
@@ -74,6 +74,25 @@ class User < ActiveRecord::Base
   # Overwrite password_required for open id
   def password_required?
     new_record? ? not_using_openid? && (crypted_password.blank? || !password.blank?) : !password.blank?
+  end
+  
+  def get_recent_activities
+    # get the user's activites
+    user_activities = self.activities.all(:order => 'created_at DESC', :limit => 15)
+    
+    # get the activities for tasks assigned to the user
+    my_tasks = self.tasks_assigned.map(&:id)
+    mytask_activities = []
+    mytask_activities = Activity.find(:all, :conditions => ["task_id IN (?)", my_tasks], :order => 'created_at DESC', :limit => 15) unless my_tasks.blank?
+    
+    # get the activities for tasks assigned by the user
+    other_peoples_tasks = self.assigned_tasks.map(&:id)
+    theirtask_activites = []
+    theirtask_activites = Activity.find(:all, :conditions => ["task_id IN (?)", other_peoples_tasks], :order => 'created_at DESC', :limit => 15) unless other_peoples_tasks.blank?
+    
+    combined = (user_activities + mytask_activities + theirtask_activites).uniq # combine and only get unique objects
+    combined = combined.sort_by { |activity| activity.created_at } # sort all activities by created_at date
+    return combined[0..14] # only return most recent 15 activites
   end
 
   protected

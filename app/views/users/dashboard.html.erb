@@ -1,3 +1,12 @@
 <%= title('Dashboard', :h2) %>
 
+<h3>Recent Activity</h3>
+<table>
+  <tr>
+    <%- @recent_activities.each do |activity| -%>
+      <td><%= activity.description %></td>
+    <%- end -%>
+  </tr>
+</table>
+
 <%= link_to('My Tasks', tasks_path) %>

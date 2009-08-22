@@ -49,6 +49,8 @@ class UsersController < ApplicationController
   
   def dashboard
     @user = current_user
+    # get recent activites for user, friends, and tasks
+    @recent_activities = @user.get_recent_activities
   end
   
   protected

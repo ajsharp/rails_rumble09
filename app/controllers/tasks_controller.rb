@@ -2,15 +2,22 @@ class TasksController < ApplicationController
   before_filter :login_required
   
   def index
-    @tasks = Task.find()
+    @tasks = Task.find_by_creator_id(current_user.id)
   end
   
   def new
-    @task = current_user.tasks.new
+    @task = Task.new
   end
   
   def create
-    @task = current_user.tasks.new(params[:task])
-    @task.save
+    @task = Task.new(params[:task])
+    @task.creator = current_user
+    if @task.save
+      redirect_to :action => 'list'
+    else
+      render :action => 'new'
+    end
   end
+  
+  
 end

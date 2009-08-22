@@ -1,0 +1,11 @@
+<% if @tasks.blank? %>
+  <p>There are not any tasks currently in the system.</p>
+<% else %>
+  <p>These are the current tasks in our system</p>
+  <ul id="tasks">
+    <% @tasks.each do |t| %>
+      <li><%= t.title -%></li>
+    <% end %>
+  </ul>
+<% end %>
+  <p><%= link_to "Add new task", {:action => 'new' }%></p>

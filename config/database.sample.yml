@@ -2,19 +2,19 @@ development:
   adapter: mysql
   encoding: utf8
   database: passthemonkey_development
-  username: webuser
-  password: webuser
+  username: root
+  password:
   
 test:
   adapter: mysql
   encoding: utf8
-  database: passthemonkey_test
+  database: bort_test
   username: root
   password:
   
 production:
   adapter: mysql
   encoding: utf8
-  database: passthemonkey_production
-  username: passthemonkey
-  password: p@55m0nk3y
+  database: bort_production
+  username: root
+  password:

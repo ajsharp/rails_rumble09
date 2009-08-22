@@ -22,9 +22,10 @@ class Assignment < ActiveRecord::Base
   end
   
   belongs_to :assigner, :class_name => "User", :foreign_key => "assigner_id"
-  belongs_to :assignee, :class_name => "User", :foreign_key => "assigned_id"
+  belongs_to :assignee, :class_name => "User", :foreign_key => "assignee_id"
   belongs_to :task
   
   validates_presence_of :assigner_id, :on => :create, :message => "can't be blank"
   validates_presence_of :assignee_id, :on => :create, :message => "can't be blank"
+  validates_presence_of :task_id, :on => :create, :message => "can't be blank"
 end

@@ -22,6 +22,9 @@ class User < ActiveRecord::Base
   has_many :assignments
   has_many :tasks, :through => :assignments
   has_many :comments
+  has_many :connections
+  has_many :friends, :conditions => ["connections.status = ?", "accepted"], :through => :connections
+  
 
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation

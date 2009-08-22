@@ -10,6 +10,7 @@ ActionController::Routing::Routes.draw do |map|
   
   # Restful Authentication Resources
   map.resources :users
+  map.resources :tasks
   map.resources :passwords
   map.resource :session
   

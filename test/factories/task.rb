@@ -5,4 +5,6 @@ Factory.define :task do |f|
   f.due_date    DateTime.now+1.day
   
   f.creator { |a| a.association(:user) }
+  
+  f.assignments { |a| [] }
 end

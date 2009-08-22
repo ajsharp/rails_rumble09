@@ -24,11 +24,28 @@ class TaskTest < ActiveSupport::TestCase
       assert_nil(@task.errors.on(:base))
     end
     
-    should "only be able to be assigned to one user at a time" do
-      # pending
-    end
-    
     should_validate_presence_of :title, :creator_id  
     should_belong_to :creator
-  end # end of a valid Task  
+  end # end of a valid Task
+  
+  context "given a Task" do
+    setup do
+      @task = Factory(:task)
+    end
+    
+    context "when new_assignee_id attribute is assigned" do
+      setup do
+        @new_assignee = Factory(:user)
+      end
+      
+      should "create a new Assignment instance connecting the new assignee and the task" do
+        assert_difference "@task.assignments.count", 1 do
+          @task.new_assignee_id = @new_assignee.id
+          @task.save
+        end
+      end
+    end # end of when new_assignee_id attribute is assigned
+  end # end of a Task can be assigned to a new user
+  
+  
 end

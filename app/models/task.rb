@@ -6,18 +6,18 @@ class Task < ActiveRecord::Base
   has_many :assignments
   has_many :assigners, :through => :assignments
   has_many :assignees, :through => :assignments
+  accepts_nested_attributes_for :assignments
+  
   has_many :comments
   has_many :activities
   
   before_save :check_for_new_assignee, :if => lambda { |m| m.new_assignee }
   
-  attr_accessor :new_assignee
-  
+  attr_accessor :new_assignee, :assigner_id
   
   protected
     def check_for_new_assignee
-      assignments << Assignment.create!({:assigner => current_user, :assignee => User.find_or_create_new_user(new_assignee)}) if new_assignee
-      #users << User.find_or_create_new_user(new_assignee) if new_assignee
+      assignments.create!({ :assigner_id => assigner_id, :assignee_id => User.find_or_create_new_user(new_assignee).id })
     end
   
     def validate

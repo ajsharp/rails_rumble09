@@ -25,7 +25,7 @@
 			  <%= radio_button_tag 'assign_to', 'friend' %> Existing User  --OR--
 			  <%= radio_button_tag 'assign_to', 'email' %> Email Address
 			<li>
-			<% f.fields_for @task.assignments.build do |assignment_form| %>
+			<% f.fields_for :assignments do |assignment_form| %>
 			  <li>
 			    <label>Assign To:</label>
 			    <%= assignment_form.select :assignee_id, current_user.friends.collect { |u| [u.email, u.id] } %>

@@ -1,12 +1,13 @@
 --- 
 javascripts: 
 - base: 
-  - prototype
-  - effects
-  - dragdrop
-  - controls
+  - jquery
+  - jquery-ui
+  - jrails
   - application
 stylesheets: 
 - base:
+  - reset
+  - 960
+  - text
   - base
-

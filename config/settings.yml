@@ -7,6 +7,12 @@ test:
   site_url: http://localhost:3000
   site_name: Pass the Monkey
   admin_email: traviskroberts@gmail.com
+
+cucumber:
+  site_url: http://localhost:3000
+  site_name: Pass the Monkey
+  admin_email: traviskroberts@gmail.com
+  
   
 production:
   site_url: http://passthemonkey.r09.railsrumble.com/

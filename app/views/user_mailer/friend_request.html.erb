@@ -1,1 +1,7 @@
-Friend request email text.
+Hi <%= @friend.name %>,
+
+<%= @user.name %> has requested to add you as a friend on <%= APP_CONFIG[:site_name] %>.
+
+You can follow the link below to log into your account and respond to their friend request.
+
+<%= APP_CONFIG[:site_url] %>/dashboard

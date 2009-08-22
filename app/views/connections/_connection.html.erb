@@ -1,3 +1,11 @@
 <li id="<%= dom_id(connection) %>">
-  <%= connection.friend.name %> - <%= link_to 'delete', connection_path(connection), :method => 'delete', :class => 'remote-delete' %>
+  <%- if connection.friend == @user and connection.status == 'pending' -%>
+    <%= connection.user.name %>
+    <%= link_to 'accept', connection_path(:id => connection, :response => 'accepted'), :method => 'put' %>
+    &nbsp;|&nbsp;
+    <%= link_to 'reject', connection_path(:id => connection, :response => 'rejected'), :method => 'put' %>
+  <%- else -%>
+    <%= connection.friend.name %>
+    <%= link_to 'delete', connection_path(connection), :method => 'delete', :class => 'remote-delete' %>
+  <%- end -%>
 </li>

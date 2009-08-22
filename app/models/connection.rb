@@ -23,11 +23,4 @@ class Connection < ActiveRecord::Base
   
   named_scope :approved, :conditions => ["status = ?", 'accepted']
   named_scope :waiting_approval, :conditions => ["status = ?", 'pending']
-  
-  after_create :send_request
-  
-  protected
-  def send_request
-    UserMailer.deliver_friend_request(self.user, self.friend)
-  end
 end

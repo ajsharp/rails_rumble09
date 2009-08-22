@@ -1,0 +1,17 @@
+Hi <%= @friend.name %>,
+
+Your friend, <%= @user.name %>, has requested that you join them on <%= APP_CONFIG[:site_name] %>.
+
+We've saved you some time and created an account for you. Here are your login details:
+Username: <%= @friend.email %>
+Temporary Password: <%= @password %>
+
+NOTE: You should change your password once you sign in for the first time.
+
+============
+
+<%= @user.name %> has also requested to add you as a friend on the site. Once you log in, you can respond to their friend request on your dashboard.
+
+Please visit the following url to activate your account and respond to your friend request from <%= @user.name %>.
+
+<%= @url %>

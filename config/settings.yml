@@ -4,7 +4,9 @@ development: &non_production_settings
   admin_email: traviskroberts@gmail.com
   
 test:
-  <<: *non_production_settings
+  site_url: http://localhost:3000
+  site_name: Pass the Monkey
+  admin_email: traviskroberts@gmail.com
   
 production:
   site_url: http://passthemonkey.r09.railsrumble.com/

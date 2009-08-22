@@ -1,7 +1,8 @@
 <div id="tabs">
   <ul>
   	<li><a href="#created-tasks">Created Tasks</a></li>
-  	<li><a href="#assigned-tasks">Assigned Tasks</a></li>
+  	<li><a href="#assigned-tasks">Tasks Assigned to Me</a></li>
+  	<li><a href="#tasks-assigned">Tasks I've Assigned to Others</a></li>
   </ul>
     <div id="created-tasks">
       <h2>Tasks I've Created</h2>
@@ -10,9 +11,15 @@
       </ul>
     </div>
     <div id="assigned-tasks">
-      <h2>Tasks I'm Assigned</h2>
+      <h2>Tasks Assigned to Me</h2>
       <ul id="assigned-tasks-list">
         <%= render :partial => 'list', :locals => { :tasks => @assigned_tasks } %>
+      </ul>
+    </div>
+    <div id="tasks-assigned">
+      <h2>Tasks I've Assigned to Others</h2>
+      <ul id="assigned-tasks-list">
+        <%= render :partial => 'list', :locals => { :tasks => @tasks_assigned } %>
       </ul>
     </div>
   </div>

@@ -4,6 +4,7 @@ class TasksController < ApplicationController
   def index
     @created_tasks = Task.find_all_by_creator_id(current_user.id)
     @assigned_tasks = current_user.assigned_tasks
+    @tasks_assigned = current_user.tasks_assigned
   end
   
   def new

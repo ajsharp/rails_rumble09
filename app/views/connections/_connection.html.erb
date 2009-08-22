@@ -1,10 +1,12 @@
 <li id="<%= dom_id(connection) %>">
   <%- if connection.friend == @user and connection.status == 'pending' -%>
+    <%= image_tag @user.gravatar_url %>
     <%= connection.user.name %>
     <%= link_to 'accept', connection_path(:id => connection, :response => 'accepted'), :method => 'put' %>
     &nbsp;|&nbsp;
     <%= link_to 'reject', connection_path(:id => connection, :response => 'rejected'), :method => 'put' %>
   <%- else -%>
+    <%= image_tag @user.gravatar_url %>
     <%= connection.friend.name %>
     <%= link_to 'delete', connection_path(connection), :method => 'delete', :class => 'remote-delete' %>
   <%- end -%>

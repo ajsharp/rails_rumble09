@@ -23,6 +23,7 @@ class TasksController < ApplicationController
 
   def edit
     @task = Task.find(params[:id])
+    @assignments = @task.assignments.build
   end
 
   def update

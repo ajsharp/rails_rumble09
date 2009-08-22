@@ -30,6 +30,19 @@ class User < ActiveRecord::Base
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
   attr_accessible :login, :email, :name, :password, :password_confirmation, :identity_url
+  
+  def self.find_or_create_new_user(params)
+    user = User.find_by_email(params[:email])
+    if user.nil?
+      temp_password = PhonemicPassword.generate(8)
+      User.create!(:email => params[:email], 
+                   :password => temp_password, 
+                   :password_confirmation => temp_password, 
+                   :name => params[:name])
+    else
+      user  
+    end
+  end
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   def self.authenticate(login, password)

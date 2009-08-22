@@ -34,5 +34,21 @@ class UserTest < ActiveSupport::TestCase
     end
   end # end of a User's friends
   
+  context "we need to find or create a new user" do
+    setup do
+      @existing_user = Factory(:user)
+    end
+    
+    should "return the User instance if passed in user email address exists" do
+      assert_equal @existing_user, User.find_or_create_new_user({ :email => @existing_user.email })
+    end
+    
+    should "create a new User instance if user does not exist" do
+      assert_difference "User.count", 1 do
+        new_user = Factory.build(:user)
+        assert_instance_of User, User.find_or_create_new_user({ :name => "User Name", :email => new_user.email })
+      end
+    end
+  end # end of we need to find or create a new user
   
 end

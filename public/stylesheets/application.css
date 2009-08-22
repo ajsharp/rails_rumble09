@@ -1,86 +1,197 @@
-* { padding:0; margin:0; } /* global definition for padding and margin */
-
-html { height:101%; }
-
-body { font-size:100%; height:100%; }
-
-h1, h2, h3, h4, h5 { font:normal 100%/100% arial, verdana, sans-serif; color:#000; padding:0 0 5px 0; }
-h1 { font-size:1.6em; line-height:100%; }
-h2 { font-size:1.4em; line-height:100%; }
-h3 { font-size:1.2em; line-height:100%; }
-h4 { font-size:1.0em; line-height:100%; }
-h5 { font-size:0.9em; line-height:100%; }
-
-p, ol, ul, table, dl { font:normal .75em/150% Arial, Verdana, sans-serif; padding:0 0 10px 0; }
-
-a, a:visited { color:#369; outline:none; /*removes dotted outline around links in FF*/ }
-a:hover { color:#369; text-decoration:none; }
-
-dl { padding:0 0 5px 10px; }
-dt { font-weight:bold; }
-dd { margin:0 0 5px 0; }
-
-ol { padding:0 0 0 15px; }
-ol li { padding:0 0 5px 0; margin:0; }
-
-fieldset ol { list-style-type:none; padding:0; }
-fieldset ol li label { display:block; }
-
-ul { padding:0 0 0 20px; }
-ul li { padding:0 0 5px 0; margin:0; }
-
-table { padding:0; }
-th { font-weight:bold; }
-td { padding:0; }
-
-img { border:none; }
-option { margin-right:10px;}
-
-/************ styles for notice/error divs ************/
-#error, #notice, #success { width:90%; margin:0 auto 10px auto; padding:5px; border:2px solid #DDD; }
-#error p, #notice p, #success p { margin-left:20px; padding:0; font-size:12px; color:#000; }
-#error a, #notice a, #success a { text-decoration:none; padding:0 3px; }
-#error a:hover, #notice a:hover, #success a:hover { color:#000; border:1px solid #000; }
-#error { background-color:#FBE3E4; color:#8A1F11; border-color:#FBC2C4; }
-#notice { background-color:#FFF6BF; color:#514721; border-color:#FFD324; }
-#success { background-color:#E6EFC2; color:#264409; border-color:#C6D880; }
-#error a { border:1px solid #8A1F11; color:#8A1F11; }
-#notice a { border:1px solid #514721; color:#514721; }
-#success a { border:1px solid #264409; color:#264409; }
-
-/**************************************************
-											CLASSES
-**************************************************/
-.clear { clear:both; }
-
-/************ styles for pagination ************/
+* {
+  padding: 0;
+  margin: 0;
+}
+html { height: 101%; }
+body {
+  font-size: 100%;
+  height: 100%;
+}
+h1, h2, h3, h4, h5 {
+  font: normal 100%/100% arial, verdana, sans-serif;
+  color: #000000;
+  padding: 0 0 5px 0;
+}
+h1 {
+  font-size: 1.6em;
+  line-height: 100%;
+}
+h2 {
+  font-size: 1.4em;
+  line-height: 100%;
+}
+h3 {
+  font-size: 1.2em;
+  line-height: 100%;
+}
+h4 {
+  font-size: 1em;
+  line-height: 100%;
+}
+h5 {
+  font-size: 0.9em;
+  line-height: 100%;
+}
+p, ol, ul, table, dl {
+  font: normal .75em/150% Arial, Verdana, sans-serif;
+  padding: 0 0 10px 0;
+}
+a {
+  color: #336699;
+  outline: none;
+}
+a:visited {
+  color: #336699;
+  outline: none;
+}
+a:hover {
+  color: #336699;
+  text-decoration: none;
+}
+dl { padding: 0 0 5px 10px; }
+dl dt { font-weight: bold; }
+dl dd { margin: 0 0 5px 0; }
+ol { padding: 0 0 0 15px; }
+ol li {
+  padding: 0 0 5px 0;
+  margin: 0;
+}
+fieldset ol {
+  list-style-type: none;
+  padding: 0;
+}
+fieldset ol li label { display: block; }
+ul { padding: 0 0 0 20px; }
+ul li {
+  padding: 0 0 5px 0;
+  margin: 0;
+}
+table { padding: 0; }
+table th { font-weight: bold; }
+table td { padding: 0; }
+img { border: none; }
+option { margin-right: 10px; }
+#error {
+  width: 90%;
+  margin: 0 auto 10px auto;
+  padding: 5px;
+  border: 2px solid #dddddd;
+}
+#error p {
+  margin-left: 20px;
+  padding: 0;
+  font-size: 12px;
+  color: #000000;
+}
+#error a {
+  text-decoration: none;
+  padding: 0 3px;
+}
+#error a:hover {
+  color: #000000;
+  border: 1px solid #000000;
+}
+#notice {
+  width: 90%;
+  margin: 0 auto 10px auto;
+  padding: 5px;
+  border: 2px solid #dddddd;
+}
+#notice p {
+  margin-left: 20px;
+  padding: 0;
+  font-size: 12px;
+  color: #000000;
+}
+#notice a {
+  text-decoration: none;
+  padding: 0 3px;
+}
+#notice a:hover {
+  color: #000000;
+  border: 1px solid #000000;
+}
+#success {
+  width: 90%;
+  margin: 0 auto 10px auto;
+  padding: 5px;
+  border: 2px solid #dddddd;
+}
+#success p {
+  margin-left: 20px;
+  padding: 0;
+  font-size: 12px;
+  color: #000000;
+}
+#success a {
+  text-decoration: none;
+  padding: 0 3px;
+}
+#success a:hover {
+  color: #000000;
+  border: 1px solid #000000;
+}
+#error {
+  background-color: #fbe3e4;
+  color: #8a1f11;
+  border-color: #fbc2c4;
+}
+#error a {
+  border: 1px solid #8a1f11;
+  color: #8a1f11;
+}
+#notice {
+  background-color: #fff6bf;
+  color: #514721;
+  border-color: #ffd324;
+}
+#notice a {
+  border: 1px solid #514721;
+  color: #514721;
+}
+#success {
+  background-color: #e6efc2;
+  color: #264409;
+  border-color: #c6d880;
+}
+#success a {
+  border: 1px solid #264409;
+  color: #264409;
+}
+.clear { clear: both; }
 .pagination {
-	font:normal .75em/150% Arial, Verdana, Arial,sans-serif;
-	padding:3px;
-	margin:3px;
-	text-align:center;
+  font: normal .75em/150% Arial, Verdana, Arial, sans-serif;
+  padding: 3px;
+  margin: 3px;
+  text-align: center;
 }
 .pagination a {
-	padding:2px 5px 2px 5px;
-	margin:2px;
-	border:1px solid #666;
-	text-decoration:none;
-	color:#666;
-	font-size:1.0em !important;
+  padding: 2px 5px 2px 5px;
+  margin: 2px;
+  border: 1px solid #666666;
+  text-decoration: none;
+  color: #666666;
+  font-size: 1em !important;
 }
-.pagination a:hover, .pagination a:active { border:1px solid #000; color:#000; }
+.pagination a:hover {
+  border: 1px solid #000000;
+  color: #000000;
+}
+.pagination a:active {
+  border: 1px solid #000000;
+  color: #000000;
+}
 .pagination span.current {
-	padding:2px 5px 2px 5px;
-	margin:2px;
-	border:1px solid #666;
-	font-weight:bold;
-	background-color:#666;
-	color:#FFF;
+  padding: 2px 5px 2px 5px;
+  margin: 2px;
+  border: 1px solid #666666;
+  font-weight: bold;
+  background-color: #666666;
+  color: #ffffff;
 }
 .pagination span.disabled {
-	padding:2px 5px 2px 5px;
-	margin:2px;
-	border:1px solid #DDD;
-	color:#999;
+  padding: 2px 5px 2px 5px;
+  margin: 2px;
+  border: 1px solid #dddddd;
+  color: #999999;
 }
-/************************/

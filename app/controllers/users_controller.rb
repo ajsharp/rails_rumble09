@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => :create
+  before_filter :login_required, :only => [:dashboard]
   
   def new
     @user = User.new
@@ -25,6 +26,10 @@ class UsersController < ApplicationController
       flash[:error]  = "We couldn't find a user with that activation code -- check your email? Or maybe you've already activated -- try signing in."
       redirect_back_or_default(root_path)
     end
+  end
+  
+  def dashboard
+    @user = current_user
   end
   
   protected
@@ -54,7 +59,7 @@ class UsersController < ApplicationController
   end
   
   def failed_creation(message = 'Sorry, there was an error creating your account')
-    flash[:error] = message
+    flash.now[:error] = message
     render :action => :new
   end
 end

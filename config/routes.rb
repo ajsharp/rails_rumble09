@@ -1,12 +1,22 @@
 ActionController::Routing::Routes.draw do |map| 
   # Restful Authentication Rewrites
-  map.logout '/logout', :controller => 'sessions', :action => 'destroy'
-  map.login '/login', :controller => 'sessions', :action => 'new'
-  map.register '/register', :controller => 'users', :action => 'create'
-  map.signup '/signup', :controller => 'users', :action => 'new'
-  map.activate '/activate/:activation_code', :controller => 'users', :action => 'activate', :activation_code => nil
-  map.forgot_password '/forgot_password', :controller => 'passwords', :action => 'new'
-  map.change_password '/change_password/:reset_code', :controller => 'passwords', :action => 'reset'
+  map.with_options :controller => 'sessions' do |m|
+    m.logout '/logout', :action => 'destroy'
+    m.login '/login', :action => 'new'
+  end
+  
+  map.with_options :controller => 'users' do |m|
+    m.register '/register', :action => 'create'
+    m.signup '/signup', :action => 'new'
+    m.activate '/activate/:activation_code', :action => 'activate', :activation_code => nil
+    m.dashboard '/dashboard', :action => 'dashboard'
+  end
+  
+  map.with_options :controller => 'passwords' do |m|
+    m.forgot_password '/forgot_password', :action => 'new'
+    m.change_password '/change_password/:reset_code', :action => 'reset'
+  end
+  
   
   # Restful Authentication Resources
   map.resources :users

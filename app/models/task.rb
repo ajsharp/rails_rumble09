@@ -7,14 +7,14 @@ class Task < ActiveRecord::Base
   has_many :users, :through => :assignments
   has_many :comments
   
-  before_save :check_for_new_assignee, :if => lambda { |m| m.new_assignee_id }
+  before_save :check_for_new_assignee, :if => lambda { |m| m.new_assignee }
   
-  attr_accessor :new_assignee_id
+  attr_accessor :new_assignee
   
   
   protected
     def check_for_new_assignee
-      users << User.find(new_assignee_id) if new_assignee_id
+      users << User.find_or_create_new_user(new_assignee) if new_assignee
     end
   
     def validate

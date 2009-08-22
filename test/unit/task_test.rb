@@ -24,7 +24,7 @@ class TaskTest < ActiveSupport::TestCase
       assert_nil(@task.errors.on(:base))
     end
     
-    should_validate_presence_of :title, :creator_id  
+    should_validate_presence_of :title, :creator_id
     should_belong_to :creator
   end # end of a valid Task
   
@@ -33,17 +33,28 @@ class TaskTest < ActiveSupport::TestCase
       @task = Factory(:task)
     end
     
-    context "when new_assignee_id attribute is assigned" do
+    context "when new_assignee attribute is assigned" do
       setup do
         @new_assignee = Factory(:user)
       end
       
-      should "create a new Assignment instance connecting the new assignee and the task" do
-        assert_difference "@task.assignments.count", 1 do
-          @task.new_assignee_id = @new_assignee.id
-          @task.save
+      context "and the new assignee is an existing user" do
+        should "create a new Assignment instance connecting the new assignee and the task" do
+          assert_difference "Assignment.count", 1 do
+            @task.new_assignee = { :email => @new_assignee.email }
+            @task.save
+          end
         end
-      end
+      end # end of and the new assignee is an existing user
+      
+      context "and the new assignee is a new user" do
+        should "create a new Assignment instance connecting the new assignee and the task" do
+          assert_difference "Assignment.count", 1 do
+            @task.new_assignee = { :email => "new_user@example.com", :name => "New User" }
+            @task.save
+          end
+        end
+      end # end of and the new assignee is a new user
     end # end of when new_assignee_id attribute is assigned
   end # end of a Task can be assigned to a new user
   

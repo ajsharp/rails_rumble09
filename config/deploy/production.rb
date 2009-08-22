@@ -20,7 +20,7 @@ set :rails_env, "production"
 #############################################################
 
 set :user, "troberts"
-set :domain, "69.164.192.63"
+set :domain, "passthemonkey.r09.railsrumble.com"
 server domain, :app, :web
 role :db, domain, :primary => true
 

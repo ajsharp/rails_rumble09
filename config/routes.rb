@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :comments
+
   map.resources :activities
  
   # Restful Authentication Rewrites
@@ -23,7 +25,9 @@ ActionController::Routing::Routes.draw do |map|
   # Restful Authentication Resources
   map.resources :connections, :collection => {:request_membership => [:get, :post]}
   map.resources :users
-  map.resources :tasks
+  map.resources :tasks do |task|
+    task.resources :comments
+  end
   map.resources :activities
   map.resources :passwords
   map.resource :session

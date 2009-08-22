@@ -2,9 +2,9 @@
   <%- if connection.friend == @user and connection.status == 'pending' -%>
     <%= image_tag @user.gravatar_url %>
     <%= connection.user.name %>
-    <%= link_to 'accept', connection_path(:id => connection, :response => 'accepted'), :method => 'put' %>
+    <%= link_to 'accept', connection_path(:id => connection, :response => 'accept'), :method => 'put' %>
     &nbsp;|&nbsp;
-    <%= link_to 'reject', connection_path(:id => connection, :response => 'rejected'), :method => 'put' %>
+    <%= link_to 'reject', connection_path(:id => connection, :response => 'reject'), :method => 'put' %>
   <%- else -%>
     <%= image_tag @user.gravatar_url %>
     <%= connection.friend.name %>

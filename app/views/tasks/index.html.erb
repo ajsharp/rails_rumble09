@@ -4,23 +4,23 @@
   	<li><a href="#assigned-tasks">Tasks Assigned to Me</a></li>
   	<li><a href="#tasks-assigned">Tasks I've Assigned to Others</a></li>
   </ul>
-    <div id="created-tasks">
-      <h2>Tasks I've Created</h2>
-      <ul id="created-tasks-list">
-        <%= render :partial => 'list', :locals => { :tasks => @created_tasks } %>
-      </ul>
-    </div>
-    <div id="assigned-tasks">
-      <h2>Tasks Assigned to Me</h2>
-      <ul id="assigned-tasks-list">
-        <%= render :partial => 'list', :locals => { :tasks => @assigned_tasks } %>
-      </ul>
-    </div>
-    <div id="tasks-assigned">
-      <h2>Tasks I've Assigned to Others</h2>
-      <ul id="assigned-tasks-list">
-        <%= render :partial => 'list', :locals => { :tasks => @tasks_assigned } %>
-      </ul>
-    </div>
+  <div id="created-tasks">
+    <h2>Tasks I've Created</h2>
+    <ul id="created-tasks-list">
+      <%= render :partial => 'list', :locals => { :tasks => @created_tasks } %>
+    </ul>
   </div>
-  <p><%= link_to "Add new task", {:action => 'new' }%></p>
+  <div id="assigned-tasks">
+    <h2>Tasks Assigned to Me</h2>
+    <ul id="assigned-tasks-list">
+      <%= render :partial => 'list', :locals => { :tasks => @assigned_tasks } %>
+    </ul>
+  </div>
+  <div id="tasks-assigned">
+    <h2>Tasks I've Assigned to Others</h2>
+    <ul id="assigned-tasks-list">
+      <%= render :partial => 'list', :locals => { :tasks => @tasks_assigned } %>
+    </ul>
+  </div>
+</div>
+<p><%= link_to "Add new task", {:action => 'new' }%></p>

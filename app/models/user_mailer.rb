@@ -18,6 +18,20 @@ class UserMailer < ActionMailer::Base
     @body[:url] = APP_CONFIG[:site_url]
   end
   
+  def friend_request(user, friend)
+    setup_email(friend)
+    @subject << 'New friend request.'
+    @body[:user] = user
+    @body[:friend] = friend
+  end
+  
+  def generated_friend_request(user, friend)
+    setup_email(friend)
+    @subject << 'Your friend has requested that you join them!'
+    @body[:user] = user
+    @body[:friend] = friend
+  end
+  
   protected
   
   def setup_email(user)

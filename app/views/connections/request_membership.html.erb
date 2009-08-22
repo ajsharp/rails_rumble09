@@ -1,0 +1,22 @@
+<%= title 'Request Friend Registration', :h2 %>
+
+<p>A user could not be found with that email or name. If you'd like to request that the person create an account with <%= APP_CONFIG[:site_name] %>, then fill out the information below and we will send them an invitation email.</p>
+
+<% form_tag(request_membership_connections_path) do %>
+  <fieldset>
+    <ol>
+      <li>
+        <%= label_tag :name %>
+        <%= text_field_tag :name %>
+      </li>
+      <li>
+        <%= label_tag :email, 'Email Address' %>
+        <%= text_field_tag :email %>
+      </li>
+      <li>
+        <%= hidden_field_tag :friend_request, 'total_hax' %>
+        <%= submit_tag 'Send Friend Request' %>
+      </li>
+    </ol>
+  </fieldset>
+<% end %>

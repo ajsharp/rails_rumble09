@@ -1,0 +1,3 @@
+<li id="<%= dom_id(connection) %>">
+  <%= connection.friend.name %> - <%= link_to 'delete', connection_path(connection), :method => 'delete', :class => 'remote-delete' %>
+</li>

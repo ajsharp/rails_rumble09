@@ -1,0 +1,13 @@
+<%= title('Add Friend', :h2) %>
+
+<% form_for @connection do |f| -%>
+  <fieldset>
+    <ol>
+      <li>
+        <%= label_tag :query, 'Email Address or First and Last Name' %>
+        <%= text_field_tag :query, '' %>
+      </li>
+    </ol>
+    <p><%= submit_tag 'Send Friend Request' %></p>
+  </fieldset>
+<% end -%>

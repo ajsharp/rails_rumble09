@@ -19,6 +19,7 @@ ActionController::Routing::Routes.draw do |map|
   
   
   # Restful Authentication Resources
+  map.resources :connections, :collection => {:request_membership => [:get, :post]}
   map.resources :users
   map.resources :tasks
   map.resources :passwords

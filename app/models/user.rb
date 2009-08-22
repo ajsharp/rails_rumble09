@@ -27,7 +27,6 @@ class User < ActiveRecord::Base
   has_many :connections
   has_many :friends, :conditions => ["connections.status = ?", "accepted"], :through => :connections
   has_many :activities
-  
 
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
@@ -48,7 +47,11 @@ class User < ActiveRecord::Base
       @user.activation_code = activate_code
       @user.generated = true
       @user.save
-      UserMailer.deliver_generated_signup_notification(@user, temp_password)
+      if params[:friend_request]
+        return [@user, temp_password] # total hack
+      else
+        UserMailer.deliver_generated_signup_notification(@user, temp_password)
+      end
     end
     
     @user

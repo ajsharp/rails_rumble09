@@ -1,0 +1,19 @@
+<div id="tabs">
+  <ul>
+  	<li><a href="#current-friends">My Friends</a></li>
+  	<li><a href="#pending-friends">Pending Friend Requests</a></li>
+  </ul>
+  <div id="current-friends">
+    <h2>My Friends</h2>
+    <ul id="created-tasks-list">
+      <%= render :partial => 'connection', :collection => @current_friends %>
+    </ul>
+  </div>
+  <div id="pending-friends">
+    <h2>Pending Friend Requests</h2>
+    <ul id="assigned-tasks-list">
+      <%= render :partial => 'connection', :collection => @pending_friends %>
+    </ul>
+  </div>
+</div>
+<p><%= link_to "Add new friend", new_connection_path %></p>

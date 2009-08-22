@@ -8,4 +8,12 @@ $(document).ready(function() {
   $("#task_due_date").datepicker();
     
   $("#tabs").tabs();
+  
+  // hijack remote delete requests to be ajax
+  $('a.remote-delete').click(function() {
+    // we just need to add the key/value pair for the DELETE method
+    // as the second argument to the JQuery $.post() call
+    $.post(this.href, { _method: 'delete' }, null, "script");
+    return false;
+  });
 })

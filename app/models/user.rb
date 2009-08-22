@@ -57,6 +57,10 @@ class User < ActiveRecord::Base
     
     @user
   end
+  
+  def request_friendship_with!(user)
+    connections.create!(:friend => user)
+  end
 
   # Authenticates a user by their email and unencrypted password.  Returns the user or nil.
   def self.authenticate(email, password)

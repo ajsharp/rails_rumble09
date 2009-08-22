@@ -51,4 +51,39 @@ class UserTest < ActiveSupport::TestCase
     end
   end # end of we need to find or create a new user
   
+  context "given a user" do
+    setup do 
+      @user             = Factory(:user)
+      @potential_friend = Factory(:user)
+    end
+    context "when user requests a friendship from another user" do
+      setup do
+        @user.request_friendship_with!(@potential_friend)
+      end
+      
+      should_change "@user.connections.count", :by => 1
+      should_not_change "@user.friends.count"
+      
+      should "have a status of pending" do
+        assert_equal "pending", @user.connections.last.status
+      end
+    end # end of when user requests a friendship from another user
+    
+  end # end of given a user
+  
+  
+  # context "given a user who has many friends" do
+  #   setup do
+  #     @user   = Factory(:user)
+  #     @friend = Factory(:user)
+  #     @user.connections << @friend
+  #     @friend.accept_friendship!
+  #   end
+  #   
+  #   should "be able to see a list of his friends" do
+  #     assert_same_elements(@user.friends, [@friend])
+  #   end
+  # end # end of given a user who has many friends
+  
+  
 end

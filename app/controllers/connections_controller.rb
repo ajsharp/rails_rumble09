@@ -18,7 +18,7 @@ class ConnectionsController < ApplicationController
       flash[:notice] = 'Could not find specified user.'
       redirect_to request_membership_connections_path and return
     end
-    @connection = @user.connections.new(:friend_id => friend_user.id)
+    @connection = @user.request_friendship_with!(friend_user)
     if @connection.save
       UserMailer.deliver_friend_request(@user, friend_user)
       flash[:success] = "A connection request has been sent to the user."

@@ -12,6 +12,7 @@ class UserTest < ActiveSupport::TestCase
     end
     
     should_validate_presence_of :email
+    should_have_many :tasks, :assignments, :comments
   end # end of a valid User
   
 end

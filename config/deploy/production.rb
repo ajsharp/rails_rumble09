@@ -19,7 +19,7 @@ set :rails_env, "production"
 #	Servers
 #############################################################
 
-set :user, "travisr"
+set :user, "troberts"
 set :domain, "69.164.192.63"
 server domain, :app, :web
 role :db, domain, :primary => true

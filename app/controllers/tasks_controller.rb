@@ -27,7 +27,6 @@ class TasksController < ApplicationController
 
   def update
     @task = Task.find(params[:id])
-    check_for_new_assignee(@task)
     if @task.update_attributes(params[:task])
       redirect_to :action => 'index'
     else
@@ -43,11 +42,5 @@ class TasksController < ApplicationController
     else
       render :action => 'index'
     end
-  end
-  
-  protected
-  def check_for_new_assignee(task)
-    assignment = 
-    task.assignments << Assignment.create!({:assigner => current_user, :assignee => User.find_or_create_new_user(params[:new_assignee])})
   end
 end

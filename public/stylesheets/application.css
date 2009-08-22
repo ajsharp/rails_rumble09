@@ -196,7 +196,7 @@ option { margin-right: 10px; }
   color: #999999;
 }
 
-#assign_email, #assign_name, #assign_friend
+/* #assign_email, #assign_name, #assign_friend
 {
   display: none;
-}
+} */

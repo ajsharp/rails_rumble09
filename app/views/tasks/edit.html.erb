@@ -19,24 +19,36 @@
 				<%= f.label :due_date %>
 				<%= f.text_field :due_date %>
 			</li>
+			
 			<li>
 			  <%= label_tag 'assign_to' %>
 			  <%= radio_button_tag 'assign_to', 'friend' %> Existing User  --OR--
 			  <%= radio_button_tag 'assign_to', 'email' %> Email Address
 			<li>
-			<li id="assign_friend">
-				<%= f.label :assignments %>
-				<%= select_tag 'task[new_assignee][email]', "<option value=''></option>" + options_from_collection_for_select(User.all, 'email', 'name') %>
-			</li>
-			
-			<li id="assign_email">
-				<%= label_tag 'email_address' %>
-				<%= text_field_tag 'task[new_assignee][email]' %>
-			</li>
-			<li id="assign_name">
-				<%= label_tag 'name' %>
-				<%= text_field_tag 'task[new_assignee][name]' %>
-			</li>
+			<% f.fields_for @task.assignments.build do |assignment_form| %>
+			  <li>
+			    <label>Assign To:</label>
+			    <%= assignment_form.select :assignee_id, current_user.friends.collect { |u| [u.id, u.email] } %>
+			  </li>
+			  
+			  <li>
+  				<%#= f.label :assignments %>
+  				<%#= select_tag 'task[new_assignee][email]', "<option value=''></option>" + options_from_collection_for_select(User.all, 'email', 'name') %>
+  			</li>
+
+  			<li>
+  				<%= label_tag 'email_address' %>
+  				<%= text_field_tag 'task[new_assignee][email]' %>
+  			</li>
+  			
+  			<li>
+  				<%= label_tag 'name' %>
+  				<%= text_field_tag 'task[new_assignee][name]' %>
+  			</li>
+			  
+			  <%= f.hidden_field :assigner_id, :value => current_user.id %>
+			<% end %>
+			  
 		</ol>
 	</fieldset>
 	<div class="buttons">

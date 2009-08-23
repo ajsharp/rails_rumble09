@@ -1,9 +1,11 @@
 <div id="tabs"> 
   <div id="assigned-tasks">
-    <h2>Tasks I Am Responsible For</h2>
-    <table id="assigned-tasks-list">
+    <h2 class="task_hdr">Tasks I Am Responsible For</h2>
+    <p class="task_btn"><%= link_to image_tag('btn_add_task.gif', :alt => '+ Add New Task'), new_task_path %></p>
+    <div class="clear"></div>
+    <table id="tasks-list">
       <tr>
-        <th>Title</th>
+        <th>Task</th>
         <th>Assigned By</th>
       </tr>
       <%= render :partial => 'assigned_task', :collection => @assigned_tasks %>
@@ -11,10 +13,12 @@
   </div>
   
   <div id="tasks-assigned" style="display:none;">
-    <h2>Tasks I Am Waiting On</h2>
-    <table id="assigned-tasks-list">
+    <h2 class="task_hdr">Tasks I Am Waiting On</h2>
+    <p class="task_btn"><%= link_to image_tag('btn_add_task.gif', :alt => '+ Add New Task'), new_task_path %></p>
+    <div class="clear"></div>
+    <table id="tasks-list">
       <tr>
-        <th>Title</th>
+        <th>Task</th>
         <th>Currently Responsible</th>
       </tr>
       <%= render :partial => 'tasks_assigned', :collection => @tasks_assigned %>
@@ -22,8 +26,10 @@
   </div>
   
   <div id="tasks-completed" style="display:none;">
-    <h2>Completed Tasks</h2>
-    <table id="completed-tasks-list">
+    <h2 class="task_hdr">Completed Tasks</h2>
+    <p class="task_btn"><%= link_to image_tag('btn_add_task.gif', :alt => '+ Add New Task'), new_task_path %></p>
+    <div class="clear"></div>
+    <table id="tasks-list">
       <tr>
         <th>Title</th>
         <th>Date Completed</th>
@@ -32,4 +38,3 @@
     </table>
   </div>
 </div>
-<p class="big_link"><%= link_to "Add new task", {:action => 'new' }%></p>

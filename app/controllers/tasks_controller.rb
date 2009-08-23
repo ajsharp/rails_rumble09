@@ -30,6 +30,11 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     @assignments = @task.assignments.build
   end
+  
+  def pass
+    @task = Task.find(params[:id])
+    @assignments = @task.assignments.build
+  end
 
   def update
     @task = Task.find(params[:id])

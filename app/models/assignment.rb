@@ -38,12 +38,15 @@ class Assignment < ActiveRecord::Base
   validates_presence_of :assigner_id, :on => :create, :message => "can't be blank"
   validates_presence_of :assignee_id, :on => :create, :message => "can't be blank"
   validates_presence_of :task_id, :on => :create, :message => "can't be blank"
+    
+  attr_accessor :new_assignee
 
   def perform_action_from_form_params!(action)
     FORM_PARAMS_ALLOWED_ACTIONS.detect { |event| event == action } ? send("#{action}!".to_sym) : raise(Assignment::InvalidActionFromFormParams, "#{action} is not an approved action.")
   end
 
   protected
+    
     def assume_responsibility
       task.current_owner.assignments.find(:last, :conditions => {:task_id => task_id}).pass_task!
     end

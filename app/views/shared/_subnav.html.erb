@@ -33,7 +33,7 @@
       <%- if @task.new_record? -%>
         <li class="active"><%= link_to 'New Task', new_task_path %></li>
       <%- else -%>
-        <%- if current_user == @task.current_owner && !@task.pass_pending -%>
+        <%- if current_user == @task.current_owner && !@task.pass_pending? -%>
           <li><%= link_to 'Pass Task', pass_task_path(@task) %></li>
         <%- end -%>
         <li><%= link_to 'New Task', new_task_path %></li>

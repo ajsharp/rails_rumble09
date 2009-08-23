@@ -3,6 +3,10 @@ class AssignmentsController < ApplicationController
   
   def create
     @assignment = Assignment.new(params[:assignment])
+    if !params[:new_assignee][:email].blank?
+      @assignment.assignee = User.find_or_create_new_user(params[:new_assignee])
+    end
+    
     @assignment.assigner = current_user
     
     if @assignment.save

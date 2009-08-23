@@ -17,4 +17,19 @@ module ApplicationHelper
     messages
   end
   
+  def link_or_active(link_title, link_path={}, alternatives={})
+    link_to_unless_current(link_title, link_path, alternatives) {
+      # checking to see if "active" is already one of the classes assigned, and if NOT, append it to the classes string
+      unless alternatives[:class] =~ /^(\w*\s+)*active/
+        if alternatives[:class]
+          alternatives[:class].rstrip!
+          alternatives[:class] << ' active'
+        else
+          alternatives[:class] = 'active'
+        end
+      end
+      link_to(link_title, link_path, alternatives)
+    }
+	end
+  
 end

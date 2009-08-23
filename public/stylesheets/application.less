@@ -1,3 +1,8 @@
+@orange: #FFA200;
+@dark_orange: #ED8B00;
+@aqua: #04A9B8;
+@gray: #999;
+
 * {
   padding:0;
   margin:0;
@@ -5,6 +10,7 @@
 
 html {
   height:101%;
+  background-color:#D1F1F4;
 }
 
 body {
@@ -44,11 +50,11 @@ p, ol, ul, table, dl {
 }
 
 a, a:visited {
-  color:#369;
+  color:@aqua;
   outline:none;
 }
 a:hover {
-  color:#369;
+  color:@aqua;
   text-decoration:none;
 }
 
@@ -104,6 +110,102 @@ option {
   margin-right:10px;
 }
 
+#container { position:relative; }
+
+#header {
+  height:120px;
+  .logolink {
+    margin:43px 0 0 10px;
+  }
+}
+
+#content {
+  background-color:#FFF;
+  min-height:500px;
+}
+#content-inner { padding:35px 0 0 20px; }
+
+#nav {
+  p {
+    text-align:right;
+    padding:0;
+    margin:0 0 55px 0;
+    font-size:14px;
+    line-height:20px;
+    color:@orange;
+  }
+  ul {
+    float:right;
+    list-style-type:none;
+    li {
+      float:left;
+      font-size:15px;
+      margin:0 8px 0 0;
+      padding:0 9px 0 0;
+      background:url('/images/li_seperator.gif') no-repeat 100% 50%;
+      a {
+        display:block;
+        padding:5px 10px;
+        color:@orange;
+        text-decoration:none;
+        :hover {
+          color:#FFF;
+          background-color:@orange;
+        }
+      }
+      a.active {
+        color:#FFF;
+        background-color:@orange;
+      }
+    }
+    li.last {
+      padding:0;
+      margin:0;
+      background:none;
+    }
+  }
+}
+
+#subnav {
+  height:45px;
+  overflow:hidden;
+  background-color:@orange;
+  h1 {
+    float:left;
+    font-size:22px;
+    font-weight:bold;
+    line-height:45px;
+    padding:0 22px 0 9px;
+    color:#FFF;
+    background:@aqua url('/images/bg_subnav_h1.gif') no-repeat 100% 0;
+  }
+  ul {
+    float:left;
+    list-style-type:none;
+    padding:7px 0 0 18px;
+    li {
+      line-height:31px;
+      float:left;
+      margin:0 8px 0 0;
+      padding:0 0 0 11px;
+      a {
+        display:block;
+        font-size:18px;
+        font-weight:bold;
+        color:#FFF;
+        text-decoration:none;
+        padding:0 11px 0 0;
+      }
+    }
+    li:hover {
+      background:url('/images/subnav_active_l.gif') no-repeat 0 0;
+      a {
+        background:url('/images/subnav_active_r.gif') no-repeat 100% 0;
+      }
+    }
+  }
+}
+
 /************ styles for notice/error divs ************/
 @error_color: #8A1F11;
 @notice_color: #514721;
@@ -156,11 +258,46 @@ option {
   }
 }
 
+#footer {
+  padding:15px 0;
+  p {
+    font-weight:bold;
+    color:@gray;
+  }
+}
+
 /**************************************************
 											CLASSES
 **************************************************/
 .clear {
   clear:both;
+}
+.outside_ribbon {
+  position:absolute;
+  top:120px;
+  left:-10px;
+}
+.replace {
+  display:block;  
+  height:0;  
+  overflow:hidden;  
+  font-size:0;  
+  letter-spacing:-1em;  
+  text-indent:-1000em;
+}
+.site_description {
+  font-size:20px;
+  font-weight:bold;
+  color:@gray;
+  margin:0 0 20px 0;
+}
+
+/************ styles for text replacement ************/
+.tagline {
+  width:663px;
+  padding:35px 0 0 0;
+  background:url('/images/hdr_tagline.gif') no-repeat 0 0;
+  margin:0 0 20px 0;
 }
 
 /************ styles for pagination ************/

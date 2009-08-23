@@ -12,7 +12,7 @@
     <span><%= render :partial => "pass_task", :locals => { :task => @task} %></span>
   <% end %>
 </h2>
-<% if @task.assignments.find_by_assignee_id(current_user.id).status == "accepted" %>
+<% if @task.current_owner == current_user %>
   Assigned By: <%= @task.assignments.find_by_assignee_id(current_user.id).assigner.name %>
 <% else %>
   Assigned To: <%= @task.current_owner.name %>

@@ -1,22 +1,28 @@
 <h2>Pass the Task</h2>
 <% form_for Assignment.new do |f| %>
+  <%= label_tag 'assign_to' %><br />
+  <%= radio_button_tag 'assign_to', 'friend', true, :class => 'pick_choice' %> Existing User
+  &nbsp;&nbsp;OR&nbsp;&nbsp;
+  <%= radio_button_tag 'assign_to', 'email', false, :class => 'pick_choice' %> Email Address
+  
+  <br /><br />
 
-<div>
-  <%= label_tag 'assign_to' %>
-  <%= radio_button_tag 'assign_to', 'friend' %> Existing User  --OR--
-  <%= radio_button_tag 'assign_to', 'email' %> Email Address
-</div>
-<div>
-  <%= f.select :assignee_id, current_user.friend_list.collect { |friend| [friend.name, friend.id] } %>
-</div>
-<div>
-  <%= label_tag 'Name' %>
-  <%= text_field_tag 'new_assignee[name]' %>
-</div>
-<div>
-  <%= label_tag 'Email Address' %>
-  <%= text_field_tag '[new_assignee[email]' %>
-</div>
+  <div id="friend">
+    <label>Choose Existing User</label><br />
+    <%= f.select :assignee_id, current_user.friend_list.collect { |friend| [friend.name, friend.id] }, :include_blank => true %>
+  </div>
+
+  <div id="email" style="display:none;">
+    <div>
+      <%= label_tag 'Name' %><br />
+      <%= text_field_tag 'new_assignee[name]' %>
+    </div>
+    <div>
+      <%= label_tag 'Email Address' %><br />
+      <%= text_field_tag '[new_assignee[email]' %>
+    </div>
+  </div>
+
   <%= f.hidden_field :task_id, :value => task.id %>
   <%= f.submit "Pass Task" %>
 <% end %>

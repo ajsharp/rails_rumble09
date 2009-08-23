@@ -29,4 +29,18 @@ $(document).ready(function() {
     
     return false;
   });
+  
+  // assignment picker
+  $(".pick_choice").click(function() {
+    $("#friend").hide();
+    $("#email").hide();
+    if(div == 'email') {
+      $('#assignment_assignee_id').val('');
+    } else {
+      $("#new_assignee_name").val('');
+      $("#_new_assignee_email").val('');
+    }
+    var div = $('input:radio:checked').val();
+    $("#" + div).show();
+  })
 })

@@ -393,6 +393,11 @@ form input[type="checkbox"] {
   float: left;
   margin: 5px 5px 0 0;
 }
+form select {
+  width: 250px;
+  font-size: 18px;
+  border: 2px solid #ffa200;
+}
 form textarea {
   width: 350px;
   height: 200px;

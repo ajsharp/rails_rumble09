@@ -1,28 +1,24 @@
-<%= title('Dashboard', :h2) %>
-
-<table>
-  <tr>
-    <th>Activity Log</th>
-  </tr>
-  <tr>
-    <%- @recent_activities.each do |activity| -%>
-      <td><%= activity.description %></td>
-    <%- end -%>
-  </tr>
-</table>
-
-<table>
+<div class="grid_5">
+  <table class="dash_table">
   <tr>
     <th>Friends</th>
   </tr>
   <tr>
     <%- @friends.each do |friend| -%>
-      <td><%= image_tag friend.gravatar_url(:size => '20', :secure => true) %><%= friend.name %></td>
+      <td>
+        <%= image_tag friend.gravatar_url(:size => '20', :secure => true) %>
+        <%= friend.name %>
+      </td>
     <%- end -%>
+  </tr>  
+  <tr>
+    <td class="view_link"><%= link_to 'View All &raquo;', connections_path %></td>
   </tr>
 </table>
+</div>
 
-<table>
+<div class="grid_5">
+  <table class="dash_table">
   <tr>
     <th>Due Tasks</th>
   </tr>
@@ -31,24 +27,35 @@
       <td><%= link_to(task.title, task) %></td>
     <%- end -%>
   </tr>
-</table>
-
-<table>
   <tr>
-    <th>Waiting On</th>
-  </tr>
-  <tr>
-    <%- @expected_tasks.each do |task| -%>
-      <td><%= link_to(task.title, task) %></td>
-    <%- end -%>
+    <td class="view_link"><%= link_to 'All Tasks &raquo;', tasks_path %></td>
   </tr>
 </table>
+</div>
 
-<div id="create-task-form">
+<div class="grid_5 clearfix">
+  <table class="dash_table">
+    <tr>
+      <th>Waiting On</th>
+    </tr>
+    <tr>
+      <%- @expected_tasks.each do |task| -%>
+        <td><%= link_to(task.title, task) %></td>
+      <%- end -%>
+    </tr>
+    <tr>
+      <td class="view_link"><%= link_to 'All Tasks &raquo;', tasks_path %></td>
+    </tr>
+  </table>
+</div>
+
+<div class="clear"></div>
+
+<div id="create-task-form" class="grid_7">
   <% form_for @new_task do |f| %>
   	<%= f.error_messages %>
   	<fieldset>
-  		<legend>New Task</legend>
+  		<legend>Create a Task</legend>
   		<ol>
   			<li>
   				<%= f.label :title %>
@@ -61,7 +68,22 @@
   		</ol>
   	</fieldset>
   	<div class="buttons">
-  		<%= submit_tag 'Create Task' %>
+  		<%= submit_tag 'Create' %>
   	</div>
   <% end %>
 </div>
+
+<div class="grid_8">
+  <table class="dash_table">
+  <tr>
+    <th>Activity Log</th>
+  </tr>
+  <tr>
+    <%- @recent_activities.each do |activity| -%>
+      <td><%= activity.description %></td>
+    <%- end -%>
+  </tr>
+</table>
+</div>
+
+<div class="clear"></div>

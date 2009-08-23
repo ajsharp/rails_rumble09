@@ -1,7 +1,7 @@
 <tr>
-  <td class="count"><%= assigned_task_counter+1 %></td>
+  <!-- <td class="count"><%= assigned_task_counter+1 %></td> -->
   <td class="title"><%= link_to h(assigned_task.title), edit_task_path(assigned_task) %></td>
-  <td class="action_by"><%= h assigned_task.pretty_date(:action_by) unless assigned_task.action_by.nil? %></td>
-  <td class="due_date"><%= h assigned_task.pretty_date(:due_date) unless assigned_task.action_by.nil? %></td>
-  <td class="status"><%#= h assigned_task.status %></td>
+  <td class="assigner"><%= h assigned_task.assignments.find_by_assignee_id(current_user.id).assigner.name %></td>
+  <!-- <td class="action_by"><%= h assigned_task.pretty_date(:action_by) unless assigned_task.action_by.nil? %></td>
+    <td class="due_date"><%= h assigned_task.pretty_date(:due_date) unless assigned_task.action_by.nil? %></td> -->
 </tr>

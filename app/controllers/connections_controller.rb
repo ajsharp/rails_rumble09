@@ -2,7 +2,7 @@ class ConnectionsController < ApplicationController
   before_filter :login_required, :get_current_user
   
   def index
-    @current_friends = @user.connections.approved.paginate(:all, :page => params[:page], :per_page => 15)
+    @current_friends = @user.friend_list
     @pending_friends = @user.connections.waiting_approval.paginate(:all, :page => params[:page], :per_page => 15)
     @friend_requests = Connection.all(:conditions => ["status = ? AND friend_id = ?", 'pending', @user.id])
   end

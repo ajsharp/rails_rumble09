@@ -22,11 +22,12 @@ class TaskTest < ActiveSupport::TestCase
     
     should "accept nested attributes" do
       task = Factory(:task)
+      employee = Factory(:user)
       
       task.assigner_id = 1
-      assignments_params = {'0'=> {'assignee_id' => 2 } }
+      assignments_params = {'0'=> {'assignee_id' => employee.id } }
       task.assignments_attributes = assignments_params
-      assert_equal 1, task.assignments.size
+      assert_equal 2, task.assignments.size
     end
     
     should_validate_presence_of :title, :creator_id
@@ -108,6 +109,51 @@ class TaskTest < ActiveSupport::TestCase
       assert_equal "completed", @task.status
     end
   end # end of a Task starts with a status of 'not started'
+  
+  context "given a boss who creates a task" do
+    setup do
+      @boss = Factory(:user, :name => "Boss Man")
+      @task = Factory(:task, :creator => @boss)
+    end
+    
+    should "the task is automatically accepted by the creator" do
+      assert_equal @task.current_owner, @boss
+    end
+    
+    context "when the boss attempts to pass the task to an employee" do
+      setup do
+        @employee = Factory(:user, :name => "Employee")
+        @task.pass!(:from => @boss, :to => @employee)
+      end
+      
+      should "the boss should still be the owner until the employee accepts it" do
+        assert_equal @boss, @task.current_owner
+        assert_equal "accepted", @boss.assignments.last.status
+      end
+      
+      context "the employee accepts the task" do
+        setup { @employee.assignments.last.accept_assignment! }
+        
+        should "the employee should be the current owner" do
+          assert_equal @employee, @task.current_owner
+          assert_equal "passed", @boss.assignments.last.status
+        end
+        
+        context "if the employee passes it on" do
+          setup do
+            @intern = Factory(:user, :name => "Intern Bitch")
+          end
+          
+          should "the employee should still be the owner until the intern accepts it" do
+            @task.pass! :from => @employee, :to => @intern
+            assert_equal @employee, @task.current_owner
+          end
+          
+        end
+      end
+      
+    end # end of 
+  end # end of a Task should have an active assignment
   
   
 end

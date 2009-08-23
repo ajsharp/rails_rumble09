@@ -35,4 +35,28 @@ class AssignmentTest < ActiveSupport::TestCase
       assert_equal @assignment.status, "declined"
     end
   end
+  
+  context "a boss who creates a task" do
+    setup do
+      @boss = Factory(:user, :name => "Boss Man")
+      @task = Factory(:task, :creator => @boss)
+    end
+    
+    context "and attempts to pass it on to an employee, who accepts the task" do
+      setup do
+        @employee = Factory(:user, :name => "Employee")
+        @task.pass! :from => @boss, :to => @employee
+        @employee.assignments.last.accept_assignment!
+      end
+      
+      should "change the boss' status on the assignment to 'passed'" do
+        assert_equal "passed", @boss.assignments.last.status
+      end
+      
+      should "change the employee's status on the assignment to 'accepted" do
+        assert_equal "accepted", @employee.assignments.last.status
+      end
+    end
+  end
+  
 end

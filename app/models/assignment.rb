@@ -5,7 +5,7 @@ class Assignment < ActiveRecord::Base
   
   aasm_initial_state :pending
   aasm_state :pending
-  aasm_state :accepted
+  aasm_state :accepted, :enter => :assume_responsibility
   aasm_state :declined
   aasm_state :passed
   aasm_state :completed
@@ -34,4 +34,15 @@ class Assignment < ActiveRecord::Base
   validates_presence_of :assignee_id, :on => :create, :message => "can't be blank"
   validates_presence_of :task_id, :on => :create, :message => "can't be blank"
 
+
+  protected
+    def assume_responsibility
+      task.current_owner.assignments.find(:last, :conditions => {:task_id => task_id}).pass_task!
+    end
+  
+    # def validate
+    #   if task.current_owner != transferer
+    #     errors.add_to_base("You're not the current owner of this task, so you can't transfer it.")
+    #   end
+    # end
 end

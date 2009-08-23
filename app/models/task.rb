@@ -30,11 +30,25 @@ class Task < ActiveRecord::Base
   has_many :activities
   
   before_save :check_for_new_assignee, :if => lambda { |m| m.new_assignee }
+  after_create { |task| task.assignments.create!(:assigner => task.creator, :assignee => task.creator, :status => "accepted") }
   
   attr_accessor :new_assignee, :assigner_id
   
   def pretty_date(att)
     send(att).strftime("%b %e, %Y")
+  end
+  
+  def current_owner
+    assignments.find(:last, :conditions => ["assignments.status = ?", "accepted"]).assignee
+  end
+    
+  def pass!(opts = {})
+    # active_assignment.pass_task!
+    assignments.create!(:assigner => opts[:from], :assignee => opts[:to])
+  end
+  
+  def user_can_pass?(user)
+    assignments.find_by_assignee_id(user.id).status == "accepted"
   end
   
   protected

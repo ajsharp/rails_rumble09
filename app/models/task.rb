@@ -41,6 +41,16 @@ class Task < ActiveRecord::Base
   def current_owner
     assignments.find(:last, :conditions => ["assignments.status = ?", "accepted"]).assignee
   end
+  
+  def pending_user
+    if pass_pending?
+      assignments.find(:last, :conditions => ["assignments.status = ?", "pending"]).assignee
+    end
+  end
+  
+  def pass_pending?
+    !assignments.find(:last, :conditions => ["assignments.status = ?", "pending"]).blank?
+  end
     
   def pass!(opts = {})
     assignments.create!(:assigner => opts[:from], :assignee => opts[:to])

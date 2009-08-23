@@ -3,11 +3,11 @@
   <% if current_user == @task.creator %>
     <span><%= link_to('edit', edit_task_path(@task)) %></span>
   <% end %>
-  <% if @task.assignments.find_by_assignee_id(current_user.id).status == "pending" %>
+  <% if @task.pending_user == current_user %>
     <span><%= render :partial => "task_action", :locals => { :task => @task, :assignment => current_user.last_assignment_for_task(@task), :action => "accept_assignment" } %></span>
     <span><%= render :partial => "task_action", :locals => { :task => @task, :assignment => current_user.last_assignment_for_task(@task), :action => "reject_assignment" } %></span>
   <% end %>
-  <% if @task.assignments.find_by_assignee_id(current_user.id).status == "accepted" %>
+  <% if @task.current_owner == current_user %>
     <span><%= render :partial => "task_action", :locals => { :task => @task, :assignment => current_user.last_assignment_for_task(@task), :action => "complete_assignment" } %></span>
     <span><%= render :partial => "pass_task", :locals => { :task => @task} %></span>
   <% end %>

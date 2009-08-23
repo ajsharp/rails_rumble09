@@ -29,10 +29,11 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @task.comments.new(params[:comment])
+    @comment.user = current_user
     respond_to do |format|
       if @comment.save
         flash[:notice] = '@task.comments was successfully created.'
-        format.html { redirect_to(@comment) }
+        format.html { redirect_to(@comment.task) }
       else
         format.html { render :action => "new" }
       end

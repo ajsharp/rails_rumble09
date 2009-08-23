@@ -7,6 +7,11 @@ class TasksController < ApplicationController
     @tasks_assigned = current_user.tasks_assigned
   end
   
+  def show
+    @task = Task.find(params[:id])
+    @comment = @task.comments.new
+  end
+  
   def new
     @task = Task.new
   end

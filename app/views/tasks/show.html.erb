@@ -4,11 +4,23 @@ Assigned To: <%= @task.current_owner.name %>
 <p><%= @task.description %></p> 
 
 <div>
-  <h2></h2>
+  <h2>Comments</h2>
   <% @task.comments.each do |comment| %>
     <div>
       <%= image_tag comment.user.gravatar_url(:size => '80', :secure => true) %>
       <%= comment.message %>
     </div>
+
   <% end %>
+  <div> 
+    <h2>Add a new comment:</h2>
+    <% form_for @comment, :url => task_comments_path(:task_id => @task) do |f| %>
+      <%= f.label :message %>
+      <%= f.text_area :message %>
+    <div class="buttons">
+  		<%= submit_tag 'Add Comment' %>
+  	</div>
+  	<% end %>
+    
+  </div>
 </div>

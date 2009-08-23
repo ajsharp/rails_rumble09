@@ -52,7 +52,7 @@ class UsersController < ApplicationController
     # get recent activites for user, friends, and tasks
     @recent_activities = @user.get_recent_activities
     @friends = @user.friend_list[0..4]
-    @due_tasks = @user.accepted_tasks(5)
+    @due_tasks = @user.tasks_needing_action(5)
     @expected_tasks = @user.expected_tasks(5)
     @new_task = Task.new
   end

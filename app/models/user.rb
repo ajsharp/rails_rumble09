@@ -49,6 +49,10 @@ class User < ActiveRecord::Base
     Task.find(:all, :include => [{:assignments => :task}], :conditions => ["assignments.assignee_id = ? AND assignments.status = ?", id, "passed"], :limit => limit)
   end
   
+  def tasks_needing_action(limit = nil)
+    Task.find(:all, :include => [{:assignments => :task}], :conditions => ["assignments.assignee_id = ? AND (assignments.status = ? OR assignments.status = ?)", id, "accepted", "pending"], :limit => limit)
+  end
+  
   def last_assignment_for_task(task)
     assignments.find(:last, :conditions => { :task_id => task.id })
   end

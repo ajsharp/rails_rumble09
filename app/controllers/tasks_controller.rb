@@ -2,8 +2,8 @@ class TasksController < ApplicationController
   before_filter :login_required
   
   def index
-    @assigned_tasks = current_user.assigned_tasks
-    @tasks_assigned = current_user.tasks_assigned
+    @assigned_tasks = current_user.tasks_needing_action
+    @tasks_assigned = current_user.expected_tasks
     @tasks_completed= current_user.tasks_completed
   end
   

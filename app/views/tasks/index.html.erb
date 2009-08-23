@@ -12,9 +12,13 @@
   
   <div id="tasks-assigned" style="display:none;">
     <h2>Tasks I Am Waiting On</h2>
-    <ul id="assigned-tasks-list">
-      <%= render :partial => 'list', :locals => { :tasks => @tasks_assigned } %>
-    </ul>
+    <table id="assigned-tasks-list">
+      <tr>
+        <th>Title</th>
+        <th>Currently Responsible</th>
+      </tr>
+      <%= render :partial => 'tasks_assigned', :collection => @tasks_assigned %>
+    </table>
   </div>
 </div>
 <p class="big_link"><%= link_to "Add new task", {:action => 'new' }%></p>

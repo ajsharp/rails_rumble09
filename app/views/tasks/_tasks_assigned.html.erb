@@ -1,0 +1,4 @@
+<tr>
+  <td class="title"><%= link_to h(tasks_assigned.title), tasks_assigned %></td>
+  <td class="assignee"><%= h tasks_assigned.assignments.find_by_assigner_id(current_user.id).assignee.name %></td>
+</tr>

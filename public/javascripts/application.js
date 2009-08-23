@@ -6,8 +6,6 @@ $(document).ready(function() {
   // ui.datepicker fields
   $("#task_action_by").datepicker();
   $("#task_due_date").datepicker();
-    
-  $("#tabs").tabs();
   
   // hijack remote delete requests to be ajax
   $('a.remote-delete').click(function() {
@@ -15,5 +13,14 @@ $(document).ready(function() {
     // as the second argument to the JQuery $.post() call
     $.post(this.href, { _method: 'delete' }, null, "script");
     return false;
+  });
+  
+  // make tabs work the way we need
+  $("a.tabs").click(function() {
+    // hide all divs in the tabs div
+    $("#tabs div").hide();
+    
+    // show the correct div
+    $('#' + this.rel).show();
   });
 })

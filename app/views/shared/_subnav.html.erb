@@ -1,9 +1,33 @@
 <div id="subnav" class="grid_16 alpha omega clearfix">
-  <%- if @current_controller == 'site' or @current_controller == 'sessions' or (@current_controller == 'users' and (@current_action == 'new' or @current_action == 'create')) -%>
+  <%- if @current_controller == 'site' or @current_controller == 'sessions' or (@current_controller == 'users' and (@current_action == 'new' or @current_action == 'create')) or @current_controller == 'passwords' -%>
     <h1>Welcome to Pass the Monkey</h1>
     <ul>
       <li><%= link_or_active 'Login', login_path %></li>
       <li><%= link_or_active 'Signup Now', signup_path %></li>
+    </ul>
+  <%- elsif @current_action == 'dashboard' -%>
+    <h1>Dashboard</h1>
+    <ul>
+      <li><%= link_to 'Friends', connections_path %></li>
+      <li><%= link_to 'Tasks', tasks_path %></li>
+    </ul>
+  <%- elsif @current_controller == 'connections' -%>
+    <h1>Friends</h1>
+    <ul>
+      <li><a href="#" rel="current-friends" class="tabs">My Friends</a></li>
+    	<%- if !@pending_friends.blank? -%>
+    	  <li><a href="#" rel="sent-requests" class="tabs">Sent Requests</a></li>
+    	<%- end -%>
+    	<%- if !@friend_requests.blank? -%>
+    	  <li><a href="#" rel="received-requests" class="tabs">Received Requests</a></li>
+    	<%- end -%>
+    </ul>
+  <%- elsif @current_controller == 'tasks' -%>
+    <h1>Tasks</h1>
+    <ul>
+      <li><a href="" rel="#created-tasks" class="tabs">Created Tasks</a></li>
+    	<li><a href="" rel="#assigned-tasks" class="tabs">Tasks Assigned to Me</a></li>
+    	<li><a href="" rel="#tasks-assigned" class="tabs">Tasks I've Assigned to Others</a></li>
     </ul>
   <%- end -%>
 </div><!-- subnav -->

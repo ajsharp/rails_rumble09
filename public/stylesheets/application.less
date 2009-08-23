@@ -327,10 +327,16 @@ form {
       padding:10px 20px;
       margin:0 10px 0 0;
       background-color:@orange;
+      :hover {
+        cursor:pointer;
+      }
     }
     a {
       text-decoration:none;
       color:@orange;
+      :hover {
+        text-decoration:underline;
+      }
     }
   }
 }
@@ -354,11 +360,16 @@ form {
   letter-spacing:-1em;  
   text-indent:-1000em;
 }
-.site_description {
+.site_description, .paragraph {
   font-size:20px;
   font-weight:bold;
   color:@gray;
   margin:0 0 20px 0;
+}
+.paragraph { margin:0; }
+.big_link {
+  font-size:18px;
+  font-weight:bold;
 }
 
 /************ styles for text replacement ************/

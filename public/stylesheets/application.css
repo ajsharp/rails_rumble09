@@ -308,10 +308,12 @@ form .buttons input[type="submit"] {
   margin: 0 10px 0 0;
   background-color: #ffa200;
 }
+form .buttons input[type="submit"]:hover { cursor: pointer; }
 form .buttons a {
   text-decoration: none;
   color: #ffa200;
 }
+form .buttons a:hover { text-decoration: underline; }
 .clear { clear: both; }
 .outside_ribbon {
   position: absolute;
@@ -326,11 +328,16 @@ form .buttons a {
   letter-spacing: -1em;
   text-indent: -1000em;
 }
-.site_description {
+.site_description, .paragraph {
   font-size: 20px;
   font-weight: bold;
   color: #999999;
   margin: 0 0 20px 0;
+}
+.paragraph { margin: 0; }
+.big_link {
+  font-size: 18px;
+  font-weight: bold;
 }
 .tagline {
   width: 663px;

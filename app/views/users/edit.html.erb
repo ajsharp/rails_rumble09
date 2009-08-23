@@ -2,7 +2,6 @@
 <% form_for @user do |f| %>
 	<%= f.error_messages %>
 	<fieldset>
-		<legend>Your Details</legend>
 		<ol>
 		  <li>
 		    <%= f.label :name, 'Name' %>
@@ -12,7 +11,7 @@
 				<%= f.label :email, 'Email Address (this will be your username)' %>
 				<%= f.text_field :email %>
 			</li>
-			<li>Leave password blank unless you want to change.</li>
+			<li class="paragraph">Leave password blank unless you want to change.</li>
 			<li>
 				<%= f.label :password %>
 				<%= f.password_field :password %>

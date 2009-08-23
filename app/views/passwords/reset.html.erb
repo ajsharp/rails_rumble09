@@ -1,9 +1,8 @@
 <%= title "Reset Your Password", :h2 %>
 <% form_for :user, :url => { :action => 'update_after_forgetting' } do |f| %>
   <%= f.error_messages %>
-  <p>Please enter a new password and confirm it.</p>
+  <p class='paragraph'>Please enter a new password and confirm it.</p>
 	<fieldset>
-		<legend>Update Password</legend>
 		<ol>
 			<li>
 		    <%= f.label :password %>

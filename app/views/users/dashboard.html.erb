@@ -1,52 +1,52 @@
 <div class="grid_5">
   <table class="dash_table">
   <tr>
-    <th>Friends</th>
-  </tr>
-  <tr>
-    <%- @friends.each do |friend| -%>
-      <td>
-        <%= image_tag friend.gravatar_url(:size => '20', :secure => true) %>
-        <%= friend.name %>
-      </td>
-    <%- end -%>
-  </tr>  
-  <tr>
-    <td class="view_link"><%= link_to 'View All &raquo;', connections_path %></td>
-  </tr>
-</table>
-</div>
-
-<div class="grid_5">
-  <table class="dash_table">
-  <tr>
     <th>Due Tasks</th>
   </tr>
-  <tr>
-    <%- @due_tasks.each do |task| -%>
+  <%- @due_tasks.each do |task| -%>
+    <tr>
       <td><%= link_to(task.title, task) %></td>
-    <%- end -%>
-  </tr>
+    </tr>
+  <%- end -%>
   <tr>
     <td class="view_link"><%= link_to 'All Tasks &raquo;', tasks_path %></td>
   </tr>
 </table>
 </div>
 
-<div class="grid_5 clearfix">
+<div class="grid_5">
   <table class="dash_table">
     <tr>
       <th>Waiting On</th>
     </tr>
-    <tr>
-      <%- @expected_tasks.each do |task| -%>
+    <%- @expected_tasks.each do |task| -%>
+      <tr>
         <td><%= link_to(task.title, task) %></td>
-      <%- end -%>
-    </tr>
+      </tr>
+    <%- end -%>
     <tr>
       <td class="view_link"><%= link_to 'All Tasks &raquo;', tasks_path %></td>
     </tr>
   </table>
+</div>
+
+<div class="grid_5 clearfix">
+  <table class="dash_table">
+  <tr>
+    <th>Friends</th>
+  </tr>
+  <%- @friends.each do |friend| -%>
+    <tr>
+      <td>
+        <%= image_tag friend.gravatar_url(:size => '20', :secure => true) %>
+        <%= friend.name %>
+      </td>
+    </tr>  
+  <%- end -%>
+  <tr>
+    <td class="view_link"><%= link_to 'View All &raquo;', connections_path %></td>
+  </tr>
+</table>
 </div>
 
 <div class="clear"></div>

@@ -4,6 +4,7 @@ class Task < ActiveRecord::Base
   aasm_column :status
   
   # aasm_initial_state Proc.new { |task| task.assignments.empty? ? :not_started }
+  aasm_initial_state :not_started
   aasm_state :not_started
   aasm_state :in_progress
   aasm_state :completed

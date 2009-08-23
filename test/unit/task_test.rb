@@ -31,6 +31,7 @@ class TaskTest < ActiveSupport::TestCase
     
     should_validate_presence_of :title, :creator_id
     should_belong_to :creator
+    should_have_db_columns :status
   end # end of a valid Task
   
   context "given a Task" do
@@ -87,9 +88,26 @@ class TaskTest < ActiveSupport::TestCase
       @task.assigner_id = 1
       assert_equal 1, @task.assigner_id
     end
-  end # end of a user should be able to pass in an assigner_id
+  end # end of a user should be able to pass in an assigner_id  
   
-  
+  context "a newly created Task has state" do
+    setup { @task = Factory(:task) }
+    
+    should "have an initial state of 'not_started'" do
+      assert_equal "not_started", @task.status
+    end
+    
+    should "have a state of 'in_progress' after starting the task" do
+      @task.start_task!
+      assert_equal "in_progress", @task.status
+    end
+    
+    should "have a 'completed' state after completing the task" do
+      @task.start_task!
+      @task.complete_task!
+      assert_equal "completed", @task.status
+    end
+  end # end of a Task starts with a status of 'not started'
   
   
 end

@@ -25,14 +25,22 @@ class User < ActiveRecord::Base
   has_many :assigned_tasks, :through => :assignments, :source => :task # tasks assigned to me
   has_many :tasks_assigned, :through => :assignments_assigned, :source => :task # tasks assigned to other people
   has_many :comments
+  
   has_many :connections
-  has_many :friends, :conditions => ["connections.status = ?", "accepted"], :through => :connections
+  has_many :friends, :through => :connections, :conditions => ["connections.status = ?" , "accepted"]
+  has_many :inverse_friendships, :class_name => "Connection", :foreign_key => "friend_id"
+  has_many :inverse_friends, :through => :inverse_friendships, :source => :user, :conditions => ["connections.status = ?" , "accepted"]
+  
   has_many :activities
 
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
   attr_accessible :login, :email, :name, :password, :password_confirmation, :identity_url
+  
+  def friend_list
+    friends + inverse_friends
+  end
   
   def self.find_or_create_new_user(params)
     @user = User.find_by_email(params[:email])

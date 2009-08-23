@@ -1,0 +1,21 @@
+<% f.fields_for :assignments do |assignment_form| %>
+	<% if assignment_form.object.new_record? %>
+	  <li>
+	    <label>Assign To:</label>
+	    <%= assignment_form.select :assignee_id, current_user.friend_list.collect { |u| [u.email, u.id] }, { :include_blank => true } %>
+		  <%= assignment_form.hidden_field :assigner_id, :value => current_user.id %>
+	  </li>
+
+		<li>
+			<%= label_tag 'email_address' %>
+			<%= text_field_tag 'task[new_assignee][email]' %>
+		</li>
+	
+		<li>
+			<%= label_tag 'name' %>
+			<%= text_field_tag 'task[new_assignee][name]' %>
+		</li>
+  
+	  <%= f.hidden_field :assigner_id, :value => current_user.id %>
+	<% end %>
+<% end %>

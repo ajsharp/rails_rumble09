@@ -27,14 +27,14 @@
     	  <li class="received-requests"><a href="#" rel="received-requests" class="tabs">Received Requests</a></li>
     	<%- end -%>
     </ul>
-  <%- elsif @current_controller == 'tasks' and %w(edit new create).include?(@current_action) -%>
+  <%- elsif @current_controller == 'tasks' and %w(show edit new create).include?(@current_action) -%>
     <h1>Tasks</h1>
     <ul>
       <%- if @task.new_record? -%>
         <li class="active"><%= link_to 'New Task', new_task_path %></li>
       <%- else -%>
         <li><%= link_to 'New Task', new_task_path %></li>
-        <li class="active"><%= link_to 'Edit Task', edit_task_path(@task) %></li>
+        <li class="<%= @current_action == 'edit' ? 'active' : '' %>"><%= link_to 'Edit Task', edit_task_path(@task) %></li>
       <%- end -%>
     </ul>
   <%- elsif @current_controller == 'tasks' -%>

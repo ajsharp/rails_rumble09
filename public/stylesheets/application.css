@@ -157,6 +157,8 @@ option { margin-right: 10px; }
 }
 #subnav ul li:hover { background: url('/images/subnav_active_l.gif') no-repeat 0 0; }
 #subnav ul li:hover a { background: url('/images/subnav_active_r.gif') no-repeat 100% 0; }
+#subnav ul li.active { background: url('/images/subnav_active_l.gif') no-repeat 0 0; }
+#subnav ul li.active a { background: url('/images/subnav_active_r.gif') no-repeat 100% 0; }
 #error {
   width: 90%;
   margin: 0 auto 10px auto;

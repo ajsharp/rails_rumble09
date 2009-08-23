@@ -20,7 +20,7 @@ $(document).ready(function() {
     // hide all divs in the tabs div
     $("#tabs div").hide();
     // show the correct div
-    $(this.rel).show();
+    $("#" + this.rel).show();
     
     // take off active classes on subnav
     $("#subnav li").removeClass('active');

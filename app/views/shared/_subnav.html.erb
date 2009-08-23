@@ -14,19 +14,19 @@
   <%- elsif @current_controller == 'connections' -%>
     <h1>Friends</h1>
     <ul>
-      <li><a href="#" rel="current-friends" class="tabs">My Friends</a></li>
+      <li class="current-friends active"><a href="#" rel="current-friends" class="tabs">My Friends</a></li>
     	<%- if !@pending_friends.blank? -%>
-    	  <li><a href="#" rel="sent-requests" class="tabs">Sent Requests</a></li>
+    	  <li class="sent-requests"><a href="#" rel="sent-requests" class="tabs">Sent Requests</a></li>
     	<%- end -%>
     	<%- if !@friend_requests.blank? -%>
-    	  <li><a href="#" rel="received-requests" class="tabs">Received Requests</a></li>
+    	  <li class="received-requests"><a href="#" rel="received-requests" class="tabs">Received Requests</a></li>
     	<%- end -%>
     </ul>
   <%- elsif @current_controller == 'tasks' -%>
     <h1>Tasks</h1>
     <ul>
-    	<li><a href="" rel="#assigned-tasks" class="tabs">Due Tasks</a></li>
-    	<li><a href="" rel="#tasks-assigned" class="tabs">Waiting On</a></li>
+    	<li class="assigned-tasks active"><a href="#" rel="assigned-tasks" class="tabs">Due Tasks</a></li>
+    	<li class="tasks-assigned"><a href="#" rel="tasks-assigned" class="tabs">Waiting On</a></li>
     </ul>
   <%- end -%>
 </div><!-- subnav -->

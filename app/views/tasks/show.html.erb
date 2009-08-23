@@ -1,8 +1,5 @@
 <h2>
   Task: <%= @task.title %>
-  <% if current_user == @task.creator || @task.current_owner == current_user %>
-    <span><%= link_to('edit', edit_task_path(@task)) %></span>
-  <% end %>
   <% if @task.pending_user == current_user %>
     <span><%= render :partial => "task_action", :locals => { :task => @task, :assignment => current_user.last_assignment_for_task(@task), :action => "accept_assignment" } %></span>
     <span><%= render :partial => "task_action", :locals => { :task => @task, :assignment => current_user.last_assignment_for_task(@task), :action => "reject_assignment" } %></span>
@@ -22,24 +19,44 @@
 
 <p><%= @task.description %></p> 
 
-<div>
-  <h2>Comments</h2>
-  <% @task.comments.each do |comment| %>
-    <div>
-      <%= image_tag comment.user.gravatar_url(:size => '80', :secure => true) %>
-      <%= comment.message %>
-    </div>
-
-  <% end %>
-  <div> 
-    <h2>Add a new comment:</h2>
-    <% form_for @comment, :url => task_comments_path(:task_id => @task) do |f| %>
-      <%= f.label :message %>
-      <%= f.text_area :message %>
-    <div class="buttons">
-  		<%= submit_tag 'Add Comment' %>
-  	</div>
-  	<% end %>
-    
-  </div>
+<div class="grid_7">
+  <table class="dash_table">
+    <tr>
+      <th colspan="2">Comments</th>
+      <% @task.comments.each do |comment| %>
+        <tr>
+          <td class="gravatar"><%= image_tag comment.user.gravatar_url(:size => '50', :secure => true) %></td>
+          <td><%= comment.message %></td>
+        </tr>
+      <% end %>
+    </tr>
+  </table>
+  
+  <div id="add-comment-form">
+    <fieldset>
+      <legend>Add a Comment</legend>
+      <% form_for @comment, :url => task_comments_path(:task_id => @task) do |f| %>
+        <ol>
+          <li>
+            <%= f.label :message %>
+            <%= f.text_area :message %>
+          </li>
+        </ol>
+        <div class="buttons">
+      		<%= submit_tag 'Add Comment' %>
+      	</div>
+      <% end %>
+    </fieldset>
+  </div><!-- comment_form -->
 </div>
+
+<div class="grid_7 clearfix">
+  <table class="dash_table">
+    <tr>
+      <th>Activity History</th>
+    </tr>
+    <!-- Activity History should go here -->
+  </table>
+</div>
+
+<div class="clear"></div>

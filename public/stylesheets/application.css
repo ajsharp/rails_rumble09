@@ -184,7 +184,11 @@ option { margin-right: 10px; }
   font-size: 12px;
 }
 .dash_table .view_link a { color: #ffffff; }
-#create-task-form {
+.dash_table .gravatar {
+  width: 50px;
+  border-right: none;
+}
+#create-task-form, #add-comment-form {
   background-color: #04a9b8;
   border: 1px solid #04a9b8;
   -webkit-border-radius: 15px;
@@ -200,6 +204,19 @@ option { margin-right: 10px; }
 #create-task-form form label { color: #ffffff; }
 #create-task-form form input[type="text"] { width: auto; }
 #create-task-form form textarea {
+  width: 96%;
+  height: 50px;
+}
+#add-comment-form { padding: 15px; }
+#add-comment-form legend {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffffff;
+}
+#add-comment-form li { margin: 0; }
+#add-comment-form label { color: #ffffff; }
+#add-comment-form input[type="text"] { width: auto; }
+#add-comment-form textarea {
   width: 96%;
   height: 50px;
 }

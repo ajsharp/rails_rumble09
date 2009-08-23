@@ -47,6 +47,10 @@ class User < ActiveRecord::Base
     Task.find(:all, :include => [{:assignments => :task}], :conditions => ["assignments.assignee_id = ? AND assignments.status = ?", id, "passed"])
   end
   
+  def last_assignment_for_task(task)
+    assignments.find(:last, :conditions => { :task_id => task.id })
+  end
+  
   def friend_list
     (friends + inverse_friends).uniq
   end

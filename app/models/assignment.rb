@@ -8,10 +8,10 @@ class Assignment < ActiveRecord::Base
   aasm_state :accepted, :enter => :assume_responsibility
   aasm_state :declined
   aasm_state :passed
-  aasm_state :completed
+  aasm_state :completed, :enter => :finish_task
   
   aasm_event :accept_assignment do
-    transitions :to => :accepted, :from => :pending
+    transitions :to => :accepted, :from => [:pending, :passed]
   end
   
   aasm_event :decline_assignment do
@@ -23,7 +23,7 @@ class Assignment < ActiveRecord::Base
   end
   
   aasm_event :pass_task do
-    transitions :to => :passed, :from => :accepted
+    transitions :to => [:passed], :from => [:accepted]
   end
     
   belongs_to :assigner, :class_name => "User", :foreign_key => "assigner_id"
@@ -37,6 +37,10 @@ class Assignment < ActiveRecord::Base
   protected
     def assume_responsibility
       task.current_owner.assignments.find(:last, :conditions => {:task_id => task_id}).pass_task!
+    end
+    
+    def finish_task
+      assigner.last_assignment_for_task(task).accept_assignment!
     end
   
     # def validate

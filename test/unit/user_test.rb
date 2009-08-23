@@ -73,6 +73,25 @@ class UserTest < ActiveSupport::TestCase
     
   end # end of given a user
   
+  context "given a user who has a task" do
+    setup do
+      @boss       = Factory(:user)
+      @employee   = Factory(:user)
+      @task       = Factory(:task, :creator => @boss)
+      @assignment = @task.assignments.last
+    end
+    
+    should "be able to get the user's assignment for a given task" do
+      assert_equal @assignment, @boss.last_assignment_for_task(@task)
+      
+      @task.pass! :from => @boss, :to => @employee
+      @employee.assignments.last.accept_assignment!
+      
+      assert_equal @assignment, @boss.last_assignment_for_task(@task)
+    end
+  end
+  
+  
   
   # context "given a user who has many friends" do
   #   setup do

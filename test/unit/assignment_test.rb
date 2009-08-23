@@ -56,6 +56,25 @@ class AssignmentTest < ActiveSupport::TestCase
       should "change the employee's status on the assignment to 'accepted" do
         assert_equal "accepted", @employee.assignments.last.status
       end
+      
+      context "and when the employee completes the task" do
+        setup do
+          @employee.assignments.last.complete_assignment!
+        end
+        
+        should "the employee's assignment status should be 'completed" do
+          assert_equal "completed", @employee.assignments.last.status
+        end
+        
+        should "the boss' assignment status should change back to 'accepted'" do
+          assert_equal "accepted", @boss.assignments.last.status
+        end
+        
+        should "the boss should be the current owner" do
+          assert_equal @boss, @task.current_owner
+        end
+      end
+      
     end
   end
   

@@ -6,7 +6,7 @@
     <table class="friends-list">
       <%- @current_friends.each do |friend| -%>
         <tr>
-          <td class="gravatar"><%= image_tag @user.gravatar_url %></td>
+          <td class="gravatar"><%= image_tag friend.gravatar_url %></td>
           <td><%= friend.name %></td>
         </tr>
       <%- end -%>

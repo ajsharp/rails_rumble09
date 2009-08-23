@@ -1,6 +1,6 @@
 <tr id="<%= dom_id(connection) %>">
   <%- if connection.friend == @user and connection.status == 'pending' -%>
-    <td class="gravatar"><%= image_tag @user.gravatar_url %></td>
+    <td class="gravatar"><%= image_tag connection.user.gravatar_url %></td>
     <td><%= connection.user.name %></td>
     <td>
       <%= link_to 'accept', connection_path(:id => connection, :response => 'accept'), :method => 'put' %>
@@ -8,7 +8,7 @@
       <%= link_to 'reject', connection_path(:id => connection, :response => 'reject'), :method => 'put' %>
     </td>
   <%- else -%>
-    <td class="gravatar"><%= image_tag @user.gravatar_url %></td>
+    <td class="gravatar"><%= image_tag connection.friend.gravatar_url %></td>
     <td><%= connection.friend.name %></td>
     <td><%= link_to 'delete', connection_path(connection), :method => 'delete', :class => 'remote-delete' %></td>
   <%- end -%>

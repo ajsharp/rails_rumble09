@@ -55,7 +55,11 @@
     <tr>
       <th>Activity History</th>
     </tr>
-    <!-- Activity History should go here -->
+    <%- @recent_activities.each do |activity| -%>
+      <tr>
+        <td><%= activity.description %></td>
+      </tr>
+    <%- end -%>
   </table>
 </div>
 

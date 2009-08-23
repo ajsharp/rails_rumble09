@@ -75,11 +75,11 @@
   <tr>
     <th>Activity Log</th>
   </tr>
-  <tr>
-    <%- @recent_activities.each do |activity| -%>
+  <%- @recent_activities.each do |activity| -%>
+    <tr>
       <td><%= activity.description %></td>
-    <%- end -%>
-  </tr>
+    </tr>
+  <%- end -%>
 </table>
 </div>
 

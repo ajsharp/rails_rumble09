@@ -122,7 +122,7 @@ class User < ActiveRecord::Base
     theirtask_activites = Activity.find(:all, :conditions => ["task_id IN (?)", other_peoples_tasks], :order => 'created_at DESC', :limit => 15) unless other_peoples_tasks.blank?
     
     combined = (user_activities + mytask_activities + theirtask_activites).uniq # combine and only get unique objects
-    combined = combined.sort_by { |activity| activity.created_at } # sort all activities by created_at date
+    combined = combined.sort_by { |activity| activity.created_at }.reverse # sort all activities by created_at date
     return combined[0..14] # only return most recent 15 activites
   end
 

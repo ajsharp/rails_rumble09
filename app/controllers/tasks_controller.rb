@@ -10,6 +10,7 @@ class TasksController < ApplicationController
   def show
     @task = Task.find(params[:id])
     @comment = @task.comments.new
+    @recent_activities = @task.activities(:all, :order => "created_at DESC", :limit => 5)
   end
   
   def new

@@ -31,6 +31,7 @@ class Task < ActiveRecord::Base
   
   before_save :check_for_new_assignee, :if => lambda { |m| m.new_assignee }
   after_create { |task| task.assignments.create!(:assigner => task.creator, :assignee => task.creator, :status => "accepted") }
+  after_create :log_activity
   
   attr_accessor :new_assignee, :assigner_id
   
@@ -54,6 +55,7 @@ class Task < ActiveRecord::Base
     
   def pass!(opts = {})
     assignments.create!(:assigner => opts[:from], :assignee => opts[:to])
+    log_pass_activity(opts[:from], opts[:to])
   end
   
   def user_can_pass?(user)
@@ -69,5 +71,21 @@ class Task < ActiveRecord::Base
       if (!self.action_by.blank? and !self.due_date.blank?) and (self.action_by > self.due_date)
         errors.add_to_base("Action By Date cannot be after Due Date!")
       end
+    end
+    
+    def log_activity
+      activity = Activity.new
+      activity.user = self.creator
+      activity.task = self
+      activity.description = "#{self.creator.name} created task '#{self.title}'."
+      activity.save
+    end
+    
+    def log_pass_activity(from, to)
+      activity = Activity.new
+      activity.user = from
+      activity.task = self
+      activity.description = "#{from.name} passed task '#{self.title}' to #{to.name}."
+      activity.save
     end
 end

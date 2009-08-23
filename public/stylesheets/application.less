@@ -214,20 +214,69 @@ option {
   }
 }
 
+/************ styles for dashboard ************/
+.dash_table {
+  width:100%;
+  border:2px solid @orange;
+  th {
+    font-size:18px;
+    font-weight:bold;
+    text-align:center;
+    background-color:@orange;
+    color:#FFF;
+    padding:10px 0;
+  }
+  td {
+    vertical-align:middle;
+    padding:10px 5px;
+    font-size:16px;
+    border-bottom:2px solid @orange;
+  }
+  .view_link {
+    text-align:right;
+    border:none;
+  }
+}
+#create-task-form {
+  background-color:@aqua;
+  border:1px solid @aqua;
+  -webkit-border-radius: 15px;
+  -moz-border-radius:15px;
+}
+#create-task-form form {
+  padding:15px;
+  legend {
+    font-size:24px;
+    font-weight:bold;
+    color:#FFF;
+  }
+  li { margin:0; }
+  label {
+    color:#FFF;
+  }
+  input[type="text"] {
+    width:auto;
+  }
+  textarea {
+    width:96%;
+    height:50px;
+  }
+}
+
 /************ styles for task pages ************/
 h2.task_hdr {
   float:left;
   margin:0 15px 20px 0;
 }
 .task_btn {
-  margin:0;
-  float:left;
+  margin:0 0 20px 0;
   padding:5px 0 0 0;
 }
-#assigned-tasks-list {
+#tasks-list {
   width:95%;
   th {
-    background-color:#CCC;
+    background-color:@aqua;
+    color:#FFF;
     text-align:left;
     padding:5px 15px;
     font-size:16px;

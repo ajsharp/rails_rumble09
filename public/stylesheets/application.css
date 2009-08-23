@@ -159,23 +159,64 @@ option { margin-right: 10px; }
 #subnav ul li:hover a { background: url('/images/subnav_active_r.gif') no-repeat 100% 0; }
 #subnav ul li.active { background: url('/images/subnav_active_l.gif') no-repeat 0 0; }
 #subnav ul li.active a { background: url('/images/subnav_active_r.gif') no-repeat 100% 0; }
+.dash_table {
+  width: 100%;
+  border: 2px solid #ffa200;
+}
+.dash_table th {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  background-color: #ffa200;
+  color: #ffffff;
+  padding: 10px 0;
+}
+.dash_table td {
+  vertical-align: middle;
+  padding: 10px 5px;
+  font-size: 16px;
+  border-bottom: 2px solid #ffa200;
+}
+.dash_table .view_link {
+  text-align: right;
+  border: none;
+}
+#create-task-form {
+  background-color: #04a9b8;
+  border: 1px solid #04a9b8;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+}
+#create-task-form form { padding: 15px; }
+#create-task-form form legend {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffffff;
+}
+#create-task-form form li { margin: 0; }
+#create-task-form form label { color: #ffffff; }
+#create-task-form form input[type="text"] { width: auto; }
+#create-task-form form textarea {
+  width: 96%;
+  height: 50px;
+}
 h2.task_hdr {
   float: left;
   margin: 0 15px 20px 0;
 }
 .task_btn {
-  margin: 0;
-  float: left;
+  margin: 0 0 20px 0;
   padding: 5px 0 0 0;
 }
-#assigned-tasks-list { width: 95%; }
-#assigned-tasks-list th {
-  background-color: #cccccc;
+#tasks-list { width: 95%; }
+#tasks-list th {
+  background-color: #04a9b8;
+  color: #ffffff;
   text-align: left;
   padding: 5px 15px;
   font-size: 16px;
 }
-#assigned-tasks-list td {
+#tasks-list td {
   padding: 10px 15px;
   font-size: 16px;
 }

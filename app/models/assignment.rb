@@ -34,7 +34,6 @@ class Assignment < ActiveRecord::Base
   validates_presence_of :assignee_id, :on => :create, :message => "can't be blank"
   validates_presence_of :task_id, :on => :create, :message => "can't be blank"
 
-
   protected
     def assume_responsibility
       task.current_owner.assignments.find(:last, :conditions => {:task_id => task_id}).pass_task!

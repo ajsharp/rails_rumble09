@@ -1,7 +1,9 @@
 <%= title('Dashboard', :h2) %>
 
-<h3>Recent Activity</h3>
 <table>
+  <tr>
+    <th>Activity Log</th>
+  </tr>
   <tr>
     <%- @recent_activities.each do |activity| -%>
       <td><%= activity.description %></td>
@@ -9,5 +11,35 @@
   </tr>
 </table>
 
-<%= link_to('My Friends', connections_path) %>
-<%= link_to('My Tasks', tasks_path) %>
+<table>
+  <tr>
+    <th>Friends</th>
+  </tr>
+  <tr>
+    <%- @friends.each do |friend| -%>
+      <td><%= image_tag friend.gravatar_url(:size => '20', :secure => true) %><%= friend.name %></td>
+    <%- end -%>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th>Due Tasks</th>
+  </tr>
+  <tr>
+    <%- @due_tasks.each do |task| -%>
+      <td><%= task.title %></td>
+    <%- end -%>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th>Waiting On</th>
+  </tr>
+  <tr>
+    <%- @expected_tasks.each do |task| -%>
+      <td><%= task.title %></td>
+    <%- end -%>
+  </tr>
+</table>

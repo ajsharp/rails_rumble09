@@ -38,6 +38,15 @@ class User < ActiveRecord::Base
   # anything else you want your user to change should be added here.
   attr_accessible :login, :email, :name, :password, :password_confirmation, :identity_url
   
+  
+  def accepted_tasks
+    Task.find(:all, :include => [{:assignments => :task}], :conditions => ["assignments.assignee_id = ? AND assignments.status = ?", id, "accepted"])
+  end
+  
+  def expected_tasks
+    Task.find(:all, :include => [{:assignments => :task}], :conditions => ["assignments.assignee_id = ? AND assignments.status = ?", id, "passed"])
+  end
+  
   def friend_list
     (friends + inverse_friends).uniq
   end

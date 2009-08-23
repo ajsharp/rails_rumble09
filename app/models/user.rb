@@ -41,12 +41,12 @@ class User < ActiveRecord::Base
   attr_accessible :login, :email, :name, :password, :password_confirmation, :identity_url
   
   
-  def accepted_tasks
-    Task.find(:all, :include => [{:assignments => :task}], :conditions => ["assignments.assignee_id = ? AND assignments.status = ?", id, "accepted"])
+  def accepted_tasks(limit = nil)
+    Task.find(:all, :include => [{:assignments => :task}], :conditions => ["assignments.assignee_id = ? AND assignments.status = ?", id, "accepted"], :limit => limit)
   end
   
-  def expected_tasks
-    Task.find(:all, :include => [{:assignments => :task}], :conditions => ["assignments.assignee_id = ? AND assignments.status = ?", id, "passed"])
+  def expected_tasks(limit = nil)
+    Task.find(:all, :include => [{:assignments => :task}], :conditions => ["assignments.assignee_id = ? AND assignments.status = ?", id, "passed"], :limit => limit)
   end
   
   def last_assignment_for_task(task)

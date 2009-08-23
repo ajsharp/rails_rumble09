@@ -8,9 +8,15 @@
     <span><%= link_to('Reject', edit_task_path(@task)) %></span>
   <% end %>
   <% if @task.assignments.find_by_assignee_id(current_user.id).status == "accepted" %>
+    <span><%= link_to('Mark Complete', edit_task_path(@task)) %></span>
+    <span><%= link_to('Pass Task', edit_task_path(@task)) %></span>
   <% end %>
 </h2>
-Assigned To: <%= @task.current_owner.name %>
+<% if @task.assignments.find_by_assignee_id(current_user.id).status == "accepted" %>
+  Assigned By: <%= @task.assignments.find_by_assignee_id(current_user.id).assigner.name %>
+<% else %>
+  Assigned To: <%= @task.current_owner.name %>
+<% end %>
 
 <p><%= @task.description %></p> 
 

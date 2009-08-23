@@ -39,7 +39,7 @@
   </tr>
   <tr>
     <%- @expected_tasks.each do |task| -%>
-      <td><%= task.title %></td>
+      <td><%= link_to(task.title, task) %></td>
     <%- end -%>
   </tr>
 </table>

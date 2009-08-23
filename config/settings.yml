@@ -15,6 +15,6 @@ cucumber:
   
   
 production:
-  site_url: http://passthemonkey.r09.railsrumble.com/
+  site_url: http://passthemonkey.r09.railsrumble.com
   site_name: Pass the Monkey
   admin_email: support@passthemonkey.com

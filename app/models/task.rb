@@ -55,7 +55,7 @@ class Task < ActiveRecord::Base
     
   def pass!(opts = {})
     assignments.create!(:assigner => opts[:from], :assignee => opts[:to])
-    log_pass_activity(opts[:from], opts[:to])
+    # log_pass_activity(opts[:from], opts[:to])
   end
   
   def user_can_pass?(user)
@@ -81,11 +81,11 @@ class Task < ActiveRecord::Base
       activity.save
     end
     
-    def log_pass_activity(from, to)
-      activity = Activity.new
-      activity.user = from
-      activity.task = self
-      activity.description = "#{from.name} passed task '#{self.title}' to #{to.name}."
-      activity.save
-    end
+    # def log_pass_activity(from, to)
+    #   activity = Activity.new
+    #   activity.user = from
+    #   activity.task = self
+    #   activity.description = "#{from.name} passed task '#{self.title}' to #{to.name}."
+    #   activity.save
+    # end
 end

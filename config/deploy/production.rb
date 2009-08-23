@@ -21,8 +21,12 @@ set :rails_env, "production"
 
 set :user, "troberts"
 set :domain, "passthemonkey.r09.railsrumble.com"
-server domain, :app, :web
-role :db, domain, :primary => true
+role :web, domain
+role :app, domain
+role :db,  domain, :primary => true
+role :scm, domain
+set :runner, user
+set :admin_runner, user
 
 #############################################################
 #	Git
@@ -36,6 +40,8 @@ set :deploy_via, :remote_cache
 #############################################################
 #	Passenger
 #############################################################
+
+set :app_server, :passenger
 
 namespace :deploy do
   desc "Symlink the database yaml file"

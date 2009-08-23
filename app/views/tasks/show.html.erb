@@ -2,7 +2,7 @@
   Task: <%= @task.title %>
   <% if @task.pending_user == current_user %>
     <span><%= render :partial => "task_action", :locals => { :task => @task, :assignment => current_user.last_assignment_for_task(@task), :action => "accept_assignment" } %></span>
-    <span><%= render :partial => "task_action", :locals => { :task => @task, :assignment => current_user.last_assignment_for_task(@task), :action => "reject_assignment" } %></span>
+    <span><%= render :partial => "task_action", :locals => { :task => @task, :assignment => current_user.last_assignment_for_task(@task), :action => "decline_assignment" } %></span>
   <% end %>
   <% if @task.current_owner == current_user %>
     <span><%= render :partial => "task_action", :locals => { :task => @task, :assignment => current_user.last_assignment_for_task(@task), :action => "complete_assignment" } %></span>

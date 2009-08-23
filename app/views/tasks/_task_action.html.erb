@@ -2,7 +2,7 @@
   <%= f.hidden_field :action, :value => action %>
   <%- if action == "accept_assignment" -%>
     <%= f.submit 'Accept Task' %>
-  <%- elsif action == 'reject_assignment' -%>
+  <%- elsif action == 'decline_assignment' -%>
     <%= f.submit 'Reject Task' %>
   <%- else -%>
     <%= f.submit "Mark Complete" %>

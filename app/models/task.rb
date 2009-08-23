@@ -1,20 +1,20 @@
 class Task < ActiveRecord::Base
-  # include AASM
-  # include AASM::Persistence
-  # aasm_column :status
-  # 
+  include AASM
+  include AASM::Persistence
+  aasm_column :status
+  
   # aasm_initial_state Proc.new { |task| task.assignments.empty? ? :not_started }
-  # aasm_state :not_started
-  # aasm_state :in_progress
-  # aasm_state :completed
-  # 
-  # aasm_event :start_task do
-  #   transitions :to => :in_progress, :from => :not_started
-  # end
-  # 
-  # aasm_event :complete_task do
-  #   transitions :to => :completed, :from => :in_progress
-  # end
+  aasm_state :not_started
+  aasm_state :in_progress
+  aasm_state :completed
+  
+  aasm_event :start_task do
+    transitions :to => :in_progress, :from => :not_started
+  end
+  
+  aasm_event :complete_task do
+    transitions :to => :completed, :from => :in_progress
+  end
   
   validates_presence_of :title, :on => :create, :message => "can't be blank"
   validates_presence_of :creator_id, :on => :create, :message => "can't be blank"
@@ -28,7 +28,7 @@ class Task < ActiveRecord::Base
   has_many :comments
   has_many :activities
   
-  before_validation :check_for_new_assignee
+  before_save :check_for_new_assignee, :if => lambda { |m| m.new_assignee }
   
   attr_accessor :new_assignee, :assigner_id
   
@@ -38,12 +38,7 @@ class Task < ActiveRecord::Base
   
   protected
     def check_for_new_assignee
-      if new_assignee['email'].empty?
-
-      else
-        assignee = User.find_or_create_new_user(new_assignee)
-        assignments.create!({ :assigner_id => self.assigner_id, :assignee_id => assignee.id })
-      end
+      assignments.create!({ :assigner_id => assigner_id, :assignee_id => User.find_or_create_new_user(new_assignee).id })
     end
   
     def validate

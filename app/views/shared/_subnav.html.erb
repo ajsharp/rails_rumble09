@@ -1,5 +1,10 @@
 <div id="subnav" class="grid_16 alpha omega clearfix">
-  <%- if @current_controller == 'site' or @current_controller == 'sessions' or (@current_controller == 'users' and (@current_action == 'new' or @current_action == 'create')) or @current_controller == 'passwords' -%>
+  <%- if @current_action == '404' -%>
+    <h1>404 Error</h1>
+    <ul>
+      <li><%= link_to 'What did you do?!?!', root_path %></li>
+    </ul>
+  <%- elsif @current_controller == 'site' or @current_controller == 'sessions' or (@current_controller == 'users' and (@current_action == 'new' or @current_action == 'create')) or @current_controller == 'passwords' -%>
     <h1>Welcome to Pass the Monkey</h1>
     <ul>
       <li class="<%= @current_controller == 'sessions' ? 'active' : '' %>"><%= link_to 'Login', login_path %></li>

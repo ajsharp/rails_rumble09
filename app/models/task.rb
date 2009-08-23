@@ -43,7 +43,6 @@ class Task < ActiveRecord::Base
   end
     
   def pass!(opts = {})
-    # active_assignment.pass_task!
     assignments.create!(:assigner => opts[:from], :assignee => opts[:to])
   end
   

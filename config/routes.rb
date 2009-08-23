@@ -1,5 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :comments
+  map.resources :assignments
 
   map.resources :activities
  

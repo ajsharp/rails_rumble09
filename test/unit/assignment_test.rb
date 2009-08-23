@@ -93,4 +93,35 @@ class AssignmentTest < ActiveSupport::TestCase
     end
   end
   
+  context "given a user who wants to update an assignment via an HTTP request" do
+    setup do
+      @boss = Factory(:user, :name => "Boss Man")
+      @task = Factory(:task, :creator => @boss)
+      @employee = Factory(:user)
+      @task.pass! :from => @boss, :to => @employee
+      @assignment = @task.assignments.last
+    end
+    
+    should "allow the user to accept an assignment" do
+      @assignment.perform_action_from_form_params!("accept_assignment")
+      assert_equal "accepted", @employee.last_assignment_for_task(@task).status
+    end
+    
+    should "allow the user to decline an assignment" do
+      @assignment.perform_action_from_form_params!("decline_assignment")
+      assert_equal "declined", @employee.last_assignment_for_task(@task).status
+    end
+    
+    should "allow the user to complete an assignment" do
+      @assignment.perform_action_from_form_params!("accept_assignment")
+      @assignment.perform_action_from_form_params!("complete_assignment")
+      assert_equal "completed", @employee.last_assignment_for_task(@task).status
+    end
+    
+    should "throw an error if the requested action is not approved" do
+      assert_raise(Assignment::InvalidActionFromFormParams) { @assignment.perform_action_from_form_params!("MALICIOUS INTENTIONS!!!") }
+    end
+  end
+  
+  
 end

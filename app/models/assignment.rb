@@ -1,4 +1,9 @@
 class Assignment < ActiveRecord::Base
+  FORM_PARAMS_ALLOWED_ACTIONS = ["accept_assignment", "decline_assignment", "complete_assignment"]
+  
+  class InvalidActionFromFormParams < StandardError
+  end
+  
   include AASM
   include AASM::Persistence
   aasm_column :status
@@ -33,6 +38,10 @@ class Assignment < ActiveRecord::Base
   validates_presence_of :assigner_id, :on => :create, :message => "can't be blank"
   validates_presence_of :assignee_id, :on => :create, :message => "can't be blank"
   validates_presence_of :task_id, :on => :create, :message => "can't be blank"
+
+  def perform_action_from_form_params!(action)
+    FORM_PARAMS_ALLOWED_ACTIONS.detect { |event| event == action } ? send("#{action}!".to_sym) : raise(Assignment::InvalidActionFromFormParams, "#{action} is not an approved action.")
+  end
 
   protected
     def assume_responsibility

@@ -54,7 +54,7 @@ class User < ActiveRecord::Base
   end
   
   def friend_list
-    (friends + inverse_friends).uniq[0..4]
+    (friends + inverse_friends).uniq
   end
   
   def self.find_or_create_new_user(params)

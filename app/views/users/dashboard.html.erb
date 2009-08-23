@@ -2,15 +2,13 @@
   <table class="dash_table">
   <tr>
     <th>Due Tasks</th>
+    <th class="view_link"><%= link_to 'All Tasks &raquo;', tasks_path %></th>
   </tr>
   <%- @due_tasks.each do |task| -%>
     <tr class="<%= cycle('even', 'odd') %>">
       <td><%= link_to(task.title, task) %></td>
     </tr>
   <%- end -%>
-  <tr>
-    <td class="view_link"><%= link_to 'All Tasks &raquo;', tasks_path %></td>
-  </tr>
 </table>
 </div>
 
@@ -18,15 +16,13 @@
   <table class="dash_table">
     <tr>
       <th>Waiting On</th>
+      <th class="view_link"><%= link_to 'All Tasks &raquo;', tasks_path %></th>
     </tr>
     <%- @expected_tasks.each do |task| -%>
       <tr class="<%= cycle('even', 'odd') %>">
-        <td><%= link_to(task.title, task) %></td>
+        <td colspan="2"><%= link_to(task.title, task) %></td>
       </tr>
     <%- end -%>
-    <tr>
-      <td class="view_link"><%= link_to 'All Tasks &raquo;', tasks_path %></td>
-    </tr>
   </table>
 </div>
 
@@ -34,18 +30,16 @@
   <table class="dash_table">
   <tr>
     <th>Friends</th>
+    <th class="view_link"><%= link_to 'View All &raquo;', connections_path %></th>
   </tr>
   <%- @friends.each do |friend| -%>
     <tr class="<%= cycle('even', 'odd') %>">
-      <td>
+      <td colspan="2">
         <%= image_tag friend.gravatar_url(:size => '20', :secure => true) %>
         <%= friend.name %>
       </td>
     </tr>  
   <%- end -%>
-  <tr>
-    <td class="view_link"><%= link_to 'View All &raquo;', connections_path %></td>
-  </tr>
 </table>
 </div>
 

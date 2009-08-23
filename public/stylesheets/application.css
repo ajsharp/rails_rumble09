@@ -163,10 +163,10 @@ option { margin-right: 10px; }
 .dash_table th {
   font-size: 18px;
   font-weight: bold;
-  text-align: center;
+  text-align: left;
   background-color: #ffa200;
   color: #ffffff;
-  padding: 10px 0;
+  padding: 10px;
   border: 2px solid #ffa200;
   border-bottom: none;
 }
@@ -181,19 +181,9 @@ option { margin-right: 10px; }
 .dash_table .odd td { background-color: #ffffff; }
 .dash_table .view_link {
   text-align: right;
-  border: none;
-  padding: 0;
-  font-size: 14px;
-  border-right: 2px solid #04a9b8;
+  font-size: 12px;
 }
-.dash_table .view_link a {
-  display: block;
-  float: right;
-  padding: 5px;
-  color: #ffffff;
-  text-decoration: none;
-  background-color: #04a9b8;
-}
+.dash_table .view_link a { color: #ffffff; }
 #create-task-form {
   background-color: #04a9b8;
   border: 1px solid #04a9b8;

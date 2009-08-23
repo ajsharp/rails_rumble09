@@ -20,5 +20,16 @@
       <%= render :partial => 'tasks_assigned', :collection => @tasks_assigned %>
     </table>
   </div>
+  
+  <div id="tasks-completed" style="display:none;">
+    <h2>Completed Tasks</h2>
+    <table id="completed-tasks-list">
+      <tr>
+        <th>Title</th>
+        <th>Date Completed</th>
+      </tr>
+      <%= render :partial => 'completed_tasks', :collection => @tasks_completed %>
+    </table>
+  </div>
 </div>
 <p class="big_link"><%= link_to "Add new task", {:action => 'new' }%></p>

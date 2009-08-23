@@ -4,6 +4,7 @@ class TasksController < ApplicationController
   def index
     @assigned_tasks = current_user.assigned_tasks
     @tasks_assigned = current_user.tasks_assigned
+    @tasks_completed= current_user.tasks_completed
   end
   
   def show

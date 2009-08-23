@@ -49,7 +49,7 @@ class Assignment < ActiveRecord::Base
     end
     
     def finish_task
-      assigner.last_assignment_for_task(task).accept_assignment!
+      assigner.last_assignment_for_task(task).accept_assignment! unless assigner == assignee
     end
   
     # def validate

@@ -211,18 +211,34 @@ h2.task_hdr {
   margin: 0 0 20px 0;
   padding: 5px 0 0 0;
 }
-#tasks-list { width: 95%; }
-#tasks-list th {
+.tasks-list { width: 95%; }
+.tasks-list th {
   background-color: #04a9b8;
   color: #ffffff;
   text-align: left;
   padding: 5px 15px;
   font-size: 16px;
 }
-#tasks-list td {
+.tasks-list td {
+  vertical-align: middle;
   padding: 10px 15px;
   font-size: 16px;
 }
+.tasks-list .gravatar { width: 80px; }
+.friends-list { width: 95%; }
+.friends-list th {
+  background-color: #04a9b8;
+  color: #ffffff;
+  text-align: left;
+  padding: 5px 15px;
+  font-size: 16px;
+}
+.friends-list td {
+  vertical-align: middle;
+  padding: 10px 15px;
+  font-size: 16px;
+}
+.friends-list .gravatar { width: 80px; }
 #error {
   width: 90%;
   margin: 0 auto 10px auto;

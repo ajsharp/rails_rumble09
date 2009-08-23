@@ -1,30 +1,35 @@
 <div id="tabs">
   <div id="current-friends">
-    <h2>My Friends</h2>
-    <ul id="created-tasks-list">
+    <h2 class="task_hdr">My Friends</h2>
+    <p class="task_btn"><%= link_to image_tag('btn_add_friend.gif', :alt => '+ Add Friend'), new_connection_path %></p>
+    <div class="clear"></div>
+    <table class="friends-list">
       <%- @current_friends.each do |friend| -%>
-        <li><%= friend.name %></li>
+        <tr>
+          <td class="gravatar"><%= image_tag @user.gravatar_url %></td>
+          <td><%= friend.name %></td>
+        </tr>
       <%- end -%>
-    </ul>
+    </table>
   </div>
   
   <%- if !@pending_friends.blank? -%>
     <div id="sent-requests" style="display:none;">
-      <h2>Sent Friend Requests</h2>
-      <ul id="assigned-tasks-list">
+      <h2 class="task_hdr">Sent Friend Requests</h2>
+      <p class="task_btn"><%= link_to image_tag('btn_add_friend.gif', :alt => '+ Add Friend'), new_connection_path %></p>
+      <div class="clear"></div>
+      <table class="friends-list">
         <%= render :partial => 'connection', :collection => @pending_friends %>
-      </ul>
+      </table>
     </div>
   <%- end -%>
   
   <%- if !@friend_requests.blank? -%>
     <div id="received-requests" style="display:none;">
       <h2>Recieved Friend Requests</h2>
-      <ul id="assigned-tasks-list">
+      <table class="friends-list">
         <%= render :partial => 'connection', :collection => @friend_requests %>
-      </ul>
+      </table>
     </div>
   <%- end -%>
 </div>
-
-<p class="big_link"><%= link_to "Add new friend", new_connection_path %></p>

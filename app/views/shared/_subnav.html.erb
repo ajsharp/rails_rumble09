@@ -2,8 +2,8 @@
   <%- if @current_controller == 'site' or @current_controller == 'sessions' or (@current_controller == 'users' and (@current_action == 'new' or @current_action == 'create')) or @current_controller == 'passwords' -%>
     <h1>Welcome to Pass the Monkey</h1>
     <ul>
-      <li><%= link_or_active 'Login', login_path %></li>
-      <li><%= link_or_active 'Signup Now', signup_path %></li>
+      <li class="<%= @current_controller == 'sessions' ? 'active' : '' %>"><%= link_to 'Login', login_path %></li>
+      <li class="<%= @current_controller == 'users' ? 'active' : '' %>"><%= link_to 'Signup Now', signup_path %></li>
     </ul>
   <%- elsif @current_action == 'dashboard' -%>
     <h1>Dashboard</h1>
@@ -22,11 +22,26 @@
     	  <li class="received-requests"><a href="#" rel="received-requests" class="tabs">Received Requests</a></li>
     	<%- end -%>
     </ul>
+  <%- elsif @current_controller == 'tasks' and %w(edit new create).include?(@current_action) -%>
+    <h1>Tasks</h1>
+    <ul>
+      <%- if @task.new_record? -%>
+        <li class="active"><%= link_to 'New Task', new_task_path %></li>
+      <%- else -%>
+        <li><%= link_to 'New Task', new_task_path %></li>
+        <li class="active"><%= link_to 'Edit Task', edit_task_path(@task) %></li>
+      <%- end -%>
+    </ul>
   <%- elsif @current_controller == 'tasks' -%>
     <h1>Tasks</h1>
     <ul>
     	<li class="assigned-tasks active"><a href="#" rel="assigned-tasks" class="tabs">Due Tasks</a></li>
     	<li class="tasks-assigned"><a href="#" rel="tasks-assigned" class="tabs">Waiting On</a></li>
+    </ul>
+  <%- elsif @current_controller == 'users' -%>
+    <h1>My Account</h1>
+    <ul>
+      <li class="active"><%= link_to 'Edit Account', edit_user_path(current_user) %></li>
     </ul>
   <%- end -%>
 </div><!-- subnav -->

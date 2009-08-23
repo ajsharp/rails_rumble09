@@ -22,11 +22,10 @@ ActionController::Routing::Routes.draw do |map|
     m.change_password '/change_password/:reset_code', :action => 'reset'
   end
   
-  
   # Restful Authentication Resources
   map.resources :connections, :collection => {:request_membership => [:get, :post]}
   map.resources :users
-  map.resources :tasks do |task|
+  map.resources :tasks, :member => {:pass => [:get]} do |task|
     task.resources :comments
   end
   map.resources :activities

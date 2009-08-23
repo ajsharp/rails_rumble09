@@ -1,4 +1,4 @@
-<% if current_user == @task.current_owner && !@task.pass_pending %>
+<% if current_user == @task.current_owner && !@task.pass_pending? %>
   <%= render :partial => "pass_task", :locals => { :task => @task } %>
 <% else %>
   You may not pass this task.

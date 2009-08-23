@@ -11,7 +11,7 @@ class Task < ActiveRecord::Base
   has_many :comments
   has_many :activities
   
-  before_save :check_for_new_assignee, :if => lambda { |m| m.new_assignee }
+  before_validation :check_for_new_assignee
   
   attr_accessor :new_assignee, :assigner_id
   
@@ -21,7 +21,12 @@ class Task < ActiveRecord::Base
   
   protected
     def check_for_new_assignee
-      assignments.create!({ :assigner_id => assigner_id, :assignee_id => User.find_or_create_new_user(new_assignee).id })
+      if new_assignee['email'].empty?
+
+      else
+        assignee = User.find_or_create_new_user(new_assignee)
+        assignments.create!({ :assigner_id => self.assigner_id, :assignee_id => assignee.id })
+      end
     end
   
     def validate

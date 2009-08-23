@@ -47,8 +47,11 @@ class ConnectionsController < ApplicationController
   
   def update
     @connection = Connection.find(params[:id])
-    @connection.accept_friendship! if params[:response] == 'accept'
-    @connection.reject_friendship! if params[:response] == 'reject'
+    if params[:response] == 'accept'
+      @connection.accept_friendship!
+    else
+      @connection.reject_friendship!
+    end
     redirect_to connections_path
   end
   

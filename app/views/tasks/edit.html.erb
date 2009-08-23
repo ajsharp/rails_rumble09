@@ -29,6 +29,7 @@
 			  <li>
 			    <label>Assign To:</label>
 			    <%= assignment_form.select :assignee_id, current_user.friends.collect { |u| [u.email, u.id] } %>
+  			  <%= assignment_form.hidden_field :assigner_id, :value => current_user.id %>
 			  </li>
 			  
 			  <li>

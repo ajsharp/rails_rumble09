@@ -1,4 +1,21 @@
 class Task < ActiveRecord::Base
+  # include AASM
+  # include AASM::Persistence
+  # aasm_column :status
+  # 
+  # aasm_initial_state Proc.new { |task| task.assignments.empty? ? :not_started }
+  # aasm_state :not_started
+  # aasm_state :in_progress
+  # aasm_state :completed
+  # 
+  # aasm_event :start_task do
+  #   transitions :to => :in_progress, :from => :not_started
+  # end
+  # 
+  # aasm_event :complete_task do
+  #   transitions :to => :completed, :from => :in_progress
+  # end
+  
   validates_presence_of :title, :on => :create, :message => "can't be blank"
   validates_presence_of :creator_id, :on => :create, :message => "can't be blank"
   
@@ -16,7 +33,7 @@ class Task < ActiveRecord::Base
   attr_accessor :new_assignee, :assigner_id
   
   def pretty_date(att)
-    send(att.to_sym).strftime("%b %e, %Y")
+    send(att).strftime("%b %e, %Y")
   end
   
   protected

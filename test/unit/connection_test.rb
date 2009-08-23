@@ -18,21 +18,32 @@ class ConnectionTest < ActiveSupport::TestCase
     should_have_db_columns :user_id, :friend_id, :status, :accepted_at
   end # end of a valid Connection
   
-  context "a user requests a new friend" do
+  context "given a user who requests a new friend" do
     setup do
       @user       = Factory(:user)
       @friend     = Factory(:user)
-      @connection = Factory(:connection)
+      
+      @connection = Factory(:connection, :user => @user, :friend => @friend)
     end
     
     should "be a pending connection" do
       assert_equal @connection.status, "pending"
     end
     
-    context "the friend accepts the connection request" do
-      should "change the status to 'accepted'" do
+    context "and the friend accepts the connection request" do
+      setup do
         @connection.accept_friendship!
+      end
+      should "change the status to 'accepted'" do
         assert_equal @connection.status, "accepted"
+      end
+
+      should "appear in the user's :friends association" do
+        assert_same_elements(@user.friend_list, [@friend])
+      end
+      
+      should "appear in the friend's :friends association" do
+        assert_same_elements(@friend.friend_list, [@user])
       end
     end # end of the friend accepts the connection request
     

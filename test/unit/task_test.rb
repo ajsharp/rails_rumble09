@@ -65,18 +65,18 @@ class TaskTest < ActiveSupport::TestCase
   end # end of a Task can be assigned to a new user
   
   context "a user wants to view a pretty date" do
-    subject { Factory(:task, :action_by => DateTime.now) }
     setup do
-      @today    = DateTime.now
-      @tomorrow = DateTime.now + 1.day
+      @today    = DateTime.now.utc
+      @tomorrow = DateTime.now.utc
+      @task     = Factory(:task, :action_by => @today, :due_date => @tomorrow)
     end
     
     should "display the action_by like Jan 12, 2009" do
-      assert_equal @today.strftime("%b %e, %Y"), subject.pretty_date(:action_by)
+      assert_equal @today.strftime("%b %e, %Y"), @task.pretty_date(:action_by)
     end
     
     should "display the due date like Jan 12, 2009" do
-      assert_equal @tomorrow.strftime("%b %e, %Y"), subject.pretty_date(:due_date)
+      assert_equal @tomorrow.strftime("%b %e, %Y"), @task.pretty_date(:due_date)
     end
   end # end of a user wants to view a pretty data
   

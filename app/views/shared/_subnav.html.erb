@@ -14,12 +14,12 @@
   <%- elsif @current_controller == 'connections' -%>
     <h1>Friends</h1>
     <ul>
-      <li><a href="#" rel="#current-friends" class="tabs">My Friends</a></li>
+      <li><a href="#" rel="current-friends" class="tabs">My Friends</a></li>
     	<%- if !@pending_friends.blank? -%>
-    	  <li><a href="#" rel="#sent-requests" class="tabs">Sent Requests</a></li>
+    	  <li><a href="#" rel="sent-requests" class="tabs">Sent Requests</a></li>
     	<%- end -%>
     	<%- if !@friend_requests.blank? -%>
-    	  <li><a href="#" rel="#received-requests" class="tabs">Received Requests</a></li>
+    	  <li><a href="#" rel="received-requests" class="tabs">Received Requests</a></li>
     	<%- end -%>
     </ul>
   <%- elsif @current_controller == 'tasks' -%>

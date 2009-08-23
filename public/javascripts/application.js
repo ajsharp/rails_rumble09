@@ -23,9 +23,9 @@ $(document).ready(function() {
     $(this.rel).show();
     
     // take off active classes on subnav
-    // $("#subnav li").removeClass('active');
+    $("#subnav li").removeClass('active');
     // set active class on correct li
-    // this.parent().addClass('active');
+    $("li." + this.rel).addClass('active');
     
     return false;
   });

@@ -21,16 +21,12 @@ class UserTest < ActiveSupport::TestCase
     setup do
       @user   = Factory(:user)
       @friend = Factory(:user)
-      # @enemy  = Factory(:user)
       @friendship = Factory(:connection, :user => @user, :friend => @friend, :status => "accepted")
-      # @rivalry    = Factory(:connection, :user => @user, :friend => @enemy,  :status => "rejected")
       assert_equal "accepted", @friendship.status
-      # assert_equal "rejected", @rivalry.status
     end
     
     should "only include connection requests that have been approved" do
       assert_same_elements(@user.friend_list, [@friend])
-      # assert_does_not_contain(@user.friends, [@enemy])
       
       assert_same_elements([@user], @friend.friend_list)
     end
@@ -88,6 +84,25 @@ class UserTest < ActiveSupport::TestCase
       @employee.assignments.last.accept_assignment!
       
       assert_equal @assignment, @boss.last_assignment_for_task(@task)
+    end
+  end
+  
+  context "given a user who has completed some tasks" do
+    setup do
+      @user  = Factory(:user)
+      @task1 = Factory(:task, :creator => @user)
+      @task2 = Factory(:task, :creator => @user)
+      @task3 = Factory(:task, :creator => @user)
+
+      @user.last_assignment_for_task(@task1).complete_assignment!
+      @user.last_assignment_for_task(@task2).complete_assignment!
+      
+      @completed_tasks = @user.tasks_completed
+    end
+    
+    should "be able to get a list of completed tasks" do
+      assert_same_elements([@task1, @task2], @user.tasks_completed)
+      assert_equal 2, @user.tasks_completed.size
     end
   end
   

@@ -111,11 +111,11 @@ option { margin-right: 10px; }
 }
 #nav ul li a:hover {
   color: #ffffff;
-  background-color: #ffa200;
+  background-color: #04a9b8;
 }
 #nav ul li a.active {
   color: #ffffff;
-  background-color: #ffa200;
+  background-color: #04a9b8;
 }
 #nav ul li.last {
   padding: 0;
@@ -159,10 +159,7 @@ option { margin-right: 10px; }
 #subnav ul li:hover a { background: url('/images/subnav_active_r.gif') no-repeat 100% 0; }
 #subnav ul li.active { background: url('/images/subnav_active_l.gif') no-repeat 0 0; }
 #subnav ul li.active a { background: url('/images/subnav_active_r.gif') no-repeat 100% 0; }
-.dash_table {
-  width: 100%;
-  border: 2px solid #ffa200;
-}
+.dash_table { width: 100%; }
 .dash_table th {
   font-size: 18px;
   font-weight: bold;
@@ -170,16 +167,32 @@ option { margin-right: 10px; }
   background-color: #ffa200;
   color: #ffffff;
   padding: 10px 0;
+  border: 2px solid #ffa200;
+  border-bottom: none;
 }
 .dash_table td {
   vertical-align: middle;
-  padding: 10px 5px;
+  padding: 5px 10px;
   font-size: 16px;
-  border-bottom: 2px solid #ffa200;
+  border: 2px solid #ffa200;
+  border-top: none;
 }
+.dash_table .even td { background-color: #d1f1f4; }
+.dash_table .odd td { background-color: #ffffff; }
 .dash_table .view_link {
   text-align: right;
   border: none;
+  padding: 0;
+  font-size: 14px;
+  border-right: 2px solid #04a9b8;
+}
+.dash_table .view_link a {
+  display: block;
+  float: right;
+  padding: 5px;
+  color: #ffffff;
+  text-decoration: none;
+  background-color: #04a9b8;
 }
 #create-task-form {
   background-color: #04a9b8;

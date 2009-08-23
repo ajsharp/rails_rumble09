@@ -4,7 +4,7 @@
     <th>Due Tasks</th>
   </tr>
   <%- @due_tasks.each do |task| -%>
-    <tr>
+    <tr class="<%= cycle('even', 'odd') %>">
       <td><%= link_to(task.title, task) %></td>
     </tr>
   <%- end -%>
@@ -20,7 +20,7 @@
       <th>Waiting On</th>
     </tr>
     <%- @expected_tasks.each do |task| -%>
-      <tr>
+      <tr class="<%= cycle('even', 'odd') %>">
         <td><%= link_to(task.title, task) %></td>
       </tr>
     <%- end -%>
@@ -36,7 +36,7 @@
     <th>Friends</th>
   </tr>
   <%- @friends.each do |friend| -%>
-    <tr>
+    <tr class="<%= cycle('even', 'odd') %>">
       <td>
         <%= image_tag friend.gravatar_url(:size => '20', :secure => true) %>
         <%= friend.name %>

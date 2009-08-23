@@ -16,7 +16,7 @@ class Task < ActiveRecord::Base
   attr_accessor :new_assignee, :assigner_id
   
   def pretty_date(att)
-    self.send(att).strftime("%b %e, %Y")
+    send(att).strftime("%b %e, %Y")
   end
   
   protected

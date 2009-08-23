@@ -9,7 +9,7 @@
   <% end %>
   <% if @task.assignments.find_by_assignee_id(current_user.id).status == "accepted" %>
     <span><%= render :partial => "task_action", :locals => { :task => @task, :assignment => current_user.last_assignment_for_task(@task), :action => "complete_assignment" } %></span>
-    <span><%= link_to('Pass Task', edit_task_path(@task)) %></span>
+    <span><%= render :partial => "pass_task", :locals => { :task => @task} %></span>
   <% end %>
 </h2>
 <% if @task.assignments.find_by_assignee_id(current_user.id).status == "accepted" %>

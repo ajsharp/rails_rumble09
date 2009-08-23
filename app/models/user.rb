@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
   has_many :assigned_tasks, :through => :assignments, :source => :task, :conditions => ["assignments.status = ?", "accepted"] # tasks assigned to me
   has_many :tasks_assigned, :through => :assignments_assigned, :source => :task, :conditions => ["assignments.assignee_id <> assignments.assigner_id"] # tasks assigned to other people
   has_many :tasks_completed, :through => :assignments, :source => :task, :conditions => ["assignments.status = ?", "completed"]
+  has_many :tasks_pending, :through => :assignments, :source => :task, :conditions => ["assignments.status = ?", "pending"]
   has_many :comments
   
   has_many :connections

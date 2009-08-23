@@ -1,4 +1,8 @@
 <% form_for Assignment.new do |f| %>
+  <%= label_tag 'assign_to' %>
+  <%= radio_button_tag 'assign_to', 'friend' %> Existing User  --OR--
+  <%= radio_button_tag 'assign_to', 'email' %> Email Address
+
   <%= f.select :assignee_id, current_user.friend_list.collect { |friend| [friend.name, friend.id] } %>
   <%= f.hidden_field :task_id, :value => task.id %>
   <%= f.submit "Pass Task" %>

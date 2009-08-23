@@ -1,6 +1,6 @@
 <h2>
   Task: <%= @task.title %>
-  <% if current_user == @task.creator %>
+  <% if current_user == @task.creator || @task.current_owner == current_user %>
     <span><%= link_to('edit', edit_task_path(@task)) %></span>
   <% end %>
   <% if @task.pending_user == current_user %>
@@ -9,7 +9,9 @@
   <% end %>
   <% if @task.current_owner == current_user %>
     <span><%= render :partial => "task_action", :locals => { :task => @task, :assignment => current_user.last_assignment_for_task(@task), :action => "complete_assignment" } %></span>
-    <span><%= render :partial => "pass_task", :locals => { :task => @task} %></span>
+    <% if current_user != @task.creator %>
+      <span><%= link_to('pass', edit_task_path(@task)) %></span>
+    <% end %>
   <% end %>
 </h2>
 <% if @task.current_owner == current_user %>

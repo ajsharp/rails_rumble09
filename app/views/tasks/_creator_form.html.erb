@@ -1,0 +1,26 @@
+	<fieldset>
+		<legend>Edit Task</legend>
+		<ol>
+			<li>
+				<%= f.label :title %>
+				<%= f.text_field :title %>
+			</li>
+			<li>
+				<%= f.label :description %>
+				<%= f.text_area :description %>
+			</li>
+			<li>
+				<%= f.label :action_by, 'Action by Date' %>
+				<%= f.text_field :action_by %>
+			</li>
+			<li>
+				<%= f.label :due_date %>
+				<%= f.text_field :due_date %>
+			</li>
+    </ol>
+  </fieldset>
+    
+  <% if !@task.pass_pending? %>
+    <%= render :partial => "pass_form", :locals => { :f => f } %>
+  <% end %>
+	

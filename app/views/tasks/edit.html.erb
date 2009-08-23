@@ -1,1 +1,17 @@
-<%= render :partial => 'form', @task => @task %>
+<% form_for @task do |f| %>
+	<%= f.error_messages %>
+	
+  <% if current_user == @task.creator %>
+    <%= render :partial => 'creator_form', :locals => {:f => f} %>
+  <% end %>
+
+  <% if current_user == @task.current_owner && !@task.pass_pending? %>
+    <%= render :partial => 'pass_form', :locals => {:f => f} %>
+  <% end %>
+
+
+	<div class="buttons">
+		<%= submit_tag 'Update Task' %>
+		<%= link_to 'cancel', tasks_path %>
+	</div>
+<% end %>

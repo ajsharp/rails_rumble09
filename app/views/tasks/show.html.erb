@@ -12,9 +12,9 @@
   <% end %>
 </h2>
 <% if @task.current_owner == current_user %>
-  Assigned By: <%= @task.assignments.find_by_assignee_id(current_user.id).assigner.name %>
+  <h3>Assigned By: <%= @task.assignments.find_by_assignee_id(current_user.id).assigner.name %></h3>
 <% else %>
-  Assigned To: <%= @task.current_owner.name %>
+  <h3>Assigned To: <%= @task.current_owner.name %></h3>
 <% end %>
 
 <p><%= @task.description %></p> 

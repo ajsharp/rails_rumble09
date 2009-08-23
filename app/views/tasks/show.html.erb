@@ -1,4 +1,15 @@
-<h2>Task: <%= @task.title %></h2>
+<h2>
+  Task: <%= @task.title %>
+  <% if current_user == @task.creator %>
+    <span><%= link_to('edit', edit_task_path(@task)) %></span>
+  <% end %>
+  <% if @task.assignments.find_by_assignee_id(current_user.id).status == "pending" %>
+    <span><%= link_to('Accept', edit_task_path(@task)) %></span>
+    <span><%= link_to('Reject', edit_task_path(@task)) %></span>
+  <% end %>
+  <% if @task.assignments.find_by_assignee_id(current_user.id).status == "accepted" %>
+  <% end %>
+</h2>
 Assigned To: <%= @task.current_owner.name %>
 
 <p><%= @task.description %></p> 

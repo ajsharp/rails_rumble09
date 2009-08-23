@@ -54,6 +54,7 @@ class UsersController < ApplicationController
     @friends = @user.friend_list
     @due_tasks = @user.accepted_tasks
     @expected_tasks = @user.expected_tasks
+    @new_task = Task.new
   end
   
   protected

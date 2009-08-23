@@ -1,0 +1,14 @@
+<h2>Task: <%= @task.title %></h2>
+Assigned To: <%= @task.current_owner.name %>
+
+<p><%= @task.description %></p> 
+
+<div>
+  <h2></h2>
+  <% @task.comments.each do |comment| %>
+    <div>
+      <%= image_tag comment.user.gravatar_url(:size => '80', :secure => true) %>
+      <%= comment.message %>
+    </div>
+  <% end %>
+</div>

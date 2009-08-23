@@ -43,3 +43,25 @@
     <%- end -%>
   </tr>
 </table>
+
+<div id="create-task-form">
+  <% form_for @new_task do |f| %>
+  	<%= f.error_messages %>
+  	<fieldset>
+  		<legend>New Task</legend>
+  		<ol>
+  			<li>
+  				<%= f.label :title %>
+  				<%= f.text_field :title %>
+  			</li>
+  			<li>
+  				<%= f.label :description %>
+  				<%= f.text_area :description %>
+  			</li>
+  		</ol>
+  	</fieldset>
+  	<div class="buttons">
+  		<%= submit_tag 'Create Task' %>
+  	</div>
+  <% end %>
+</div>

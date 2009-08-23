@@ -15,7 +15,7 @@ class TasksController < ApplicationController
     @task = Task.new(params[:task])
     @task.creator = current_user
     if @task.save
-      redirect_to :action => 'index'
+      redirect_to(@task)
     else
       render :action => 'new'
     end

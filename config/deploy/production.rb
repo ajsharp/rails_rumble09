@@ -33,7 +33,7 @@ set :admin_runner, user
 #############################################################
 
 set :scm, :git
-set :branch, "master"
+set :branch, "railsrumble09"
 set :repository, "git@github.com:railsrumble/rr09-team-220.git"
 set :deploy_via, :remote_cache
 

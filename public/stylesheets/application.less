@@ -2,6 +2,7 @@
 @dark_orange: #ED8B00;
 @aqua: #04A9B8;
 @gray: #999;
+@light_blue: #D1F1F4;
 
 * {
   padding:0;
@@ -10,7 +11,7 @@
 
 html {
   height:101%;
-  background-color:#D1F1F4;
+  background-color:@light_blue;
 }
 
 body {
@@ -152,12 +153,12 @@ option {
         text-decoration:none;
         :hover {
           color:#FFF;
-          background-color:@orange;
+          background-color:@aqua;
         }
       }
       a.active {
         color:#FFF;
-        background-color:@orange;
+        background-color:@aqua;
       }
     }
     li.last {
@@ -217,7 +218,6 @@ option {
 /************ styles for dashboard ************/
 .dash_table {
   width:100%;
-  border:2px solid @orange;
   th {
     font-size:18px;
     font-weight:bold;
@@ -225,16 +225,32 @@ option {
     background-color:@orange;
     color:#FFF;
     padding:10px 0;
+    border:2px solid @orange;
+    border-bottom:none;
   }
   td {
     vertical-align:middle;
-    padding:10px 5px;
+    padding:5px 10px;
     font-size:16px;
-    border-bottom:2px solid @orange;
+    border:2px solid @orange;
+    border-top:none;
   }
+  .even td { background-color:@light_blue; }
+  .odd td { background-color:#FFF; }
   .view_link {
     text-align:right;
     border:none;
+    padding:0;
+    font-size:14px;
+    border-right:2px solid @aqua;
+    a {
+      display:block;
+      float:right;
+      padding:5px;
+      color:#FFF;
+      text-decoration:none;
+      background-color:@aqua;
+    }
   }
 }
 #create-task-form {

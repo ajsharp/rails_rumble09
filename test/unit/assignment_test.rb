@@ -42,39 +42,54 @@ class AssignmentTest < ActiveSupport::TestCase
       @task = Factory(:task, :creator => @boss)
     end
     
-    context "and attempts to pass it on to an employee, who accepts the task" do
+    context "and attempts to pass it on to an employee" do
       setup do
         @employee = Factory(:user, :name => "Employee")
         @task.pass! :from => @boss, :to => @employee
-        @employee.assignments.last.accept_assignment!
       end
       
-      should "change the boss' status on the assignment to 'passed'" do
-        assert_equal "passed", @boss.assignments.last.status
-      end
-      
-      should "change the employee's status on the assignment to 'accepted" do
-        assert_equal "accepted", @employee.assignments.last.status
-      end
-      
-      context "and when the employee completes the task" do
-        setup do
-          @employee.assignments.last.complete_assignment!
+      context "and employee rejects the task" do
+        setup { @employee.last_assignment_for_task(@task).decline_assignment! }
+        
+        should "change the employee's status for the assignment to 'rejected'" do
+          assert_equal "declined", @employee.last_assignment_for_task(@task).status
         end
         
-        should "the employee's assignment status should be 'completed" do
-          assert_equal "completed", @employee.assignments.last.status
-        end
-        
-        should "the boss' assignment status should change back to 'accepted'" do
-          assert_equal "accepted", @boss.assignments.last.status
-        end
-        
-        should "the boss should be the current owner" do
-          assert_equal @boss, @task.current_owner
+        should "keep the boss' status for the assignment as 'accepted'" do
+          assert_equal "accepted", @boss.last_assignment_for_task(@task).status
         end
       end
       
+      
+      context "and employee accepts the task" do
+        setup { @employee.last_assignment_for_task(@task).accept_assignment! }
+        
+        should "change the boss' status on the assignment to 'passed'" do
+          assert_equal "passed", @boss.assignments.last.status
+        end
+
+        should "change the employee's status on the assignment to 'accepted" do
+          assert_equal "accepted", @employee.assignments.last.status
+        end
+
+        context "and when the employee completes the task" do
+          setup do
+            @employee.assignments.last.complete_assignment!
+          end
+
+          should "the employee's assignment status should be 'completed" do
+            assert_equal "completed", @employee.assignments.last.status
+          end
+
+          should "the boss' assignment status should change back to 'accepted'" do
+            assert_equal "accepted", @boss.assignments.last.status
+          end
+
+          should "the boss should be the current owner" do
+            assert_equal @boss, @task.current_owner
+          end
+        end
+      end
     end
   end
   

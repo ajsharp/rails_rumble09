@@ -14,4 +14,14 @@ class AssignmentTest < ActiveSupport::TestCase
     should_validate_presence_of :assigner_id, :assignee_id, :task_id
   end # end of a valid Assignment
   
+  context "an assignment with a state of pending transitions to accepted"
+    setup do
+      @assignment = Factory(:assignment)
+    end
+    
+    should "change the status to 'accepted'" do
+      @assignment.accept_assignment!
+      assert_equal @assignment.status, "accepted"
+    end
+  end
 end

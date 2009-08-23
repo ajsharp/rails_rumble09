@@ -1,26 +1,39 @@
 <div id="tabs">
   <ul>
   	<li><a href="#current-friends">My Friends</a></li>
-  	<li><a href="#sent-requests">Sent Requests</a></li>
-  	<li><a href="#received-requests">Received Requests</a></li>
+  	<%- if !@pending_friends.blank? -%>
+  	  <li><a href="#sent-requests">Sent Requests</a></li>
+  	<%- end -%>
+  	<%- if !@friend_requests.blank? -%>
+  	  <li><a href="#received-requests">Received Requests</a></li>
+  	<%- end -%>
   </ul>
+  
   <div id="current-friends">
     <h2>My Friends</h2>
     <ul id="created-tasks-list">
-      <%= render :partial => 'connection', :collection => @current_friends %>
+      <%- @current_friends.each do |friend| -%>
+        <li><%= friend.name %></li>
+      <%- end -%>
     </ul>
   </div>
-  <div id="sent-requests">
-    <h2>Sent Friend Requests</h2>
-    <ul id="assigned-tasks-list">
-      <%= render :partial => 'connection', :collection => @pending_friends %>
-    </ul>
-  </div>
-  <div id="received-requests">
-    <h2>Recieved Friend Requests</h2>
-    <ul id="assigned-tasks-list">
-      <%= render :partial => 'connection', :collection => @friend_requests %>
-    </ul>
-  </div>
+  
+  <%- if !@pending_friends.blank? -%>
+    <div id="sent-requests">
+      <h2>Sent Friend Requests</h2>
+      <ul id="assigned-tasks-list">
+        <%= render :partial => 'connection', :collection => @pending_friends %>
+      </ul>
+    </div>
+  <%- end -%>
+  
+  <%- if !@friend_requests.blank? -%>
+    <div id="received-requests">
+      <h2>Recieved Friend Requests</h2>
+      <ul id="assigned-tasks-list">
+        <%= render :partial => 'connection', :collection => @friend_requests %>
+      </ul>
+    </div>
+  <%- end -%>
 </div>
 <p><%= link_to "Add new friend", new_connection_path %></p>

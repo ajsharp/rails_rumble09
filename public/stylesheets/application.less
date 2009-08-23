@@ -28,8 +28,10 @@ h1 {
   line-height:100%;
 }
 h2 {
-  font-size:1.4em;
+  font-size:30px;
+  font-weight:bold;
   line-height:100%;
+  color:@aqua;
 }
 h3 {
   font-size:1.2em;
@@ -123,7 +125,7 @@ option {
   background-color:#FFF;
   min-height:500px;
 }
-#content-inner { padding:35px 0 0 20px; }
+#content-inner { padding:35px 0 20px 20px; }
 
 #nav {
   p {
@@ -263,6 +265,73 @@ option {
   p {
     font-weight:bold;
     color:@gray;
+  }
+}
+
+/************ error handling styles ************/
+#errorExplanation {
+  width:90%;
+  margin:0 0 10px 30px;
+  border:1px solid #C00;
+  background-color:#FFD;
+  h2 {
+    font-size:16px;
+    background-color:#C00;
+    color:#FFF;
+    margin:0;
+    padding:5px 15px;
+  }
+  p {
+    font-size:16px;
+    margin:0;
+    padding:5px 15px;
+  }
+  li {
+    padding:0;
+    margin-left:50px;
+  }
+}
+
+/************ styles for forms ************/
+form {
+  li {
+    margin:0 0 10px 0;
+  }
+  label {
+    font-size:16px;
+    line-height:150%;
+    font-weight:bold;
+    color:@aqua;
+  }
+  input[type="text"], input[type="password"] {
+    width:250px;
+    font-size:18px;
+    padding:2px 5px;
+    border:2px solid @orange;
+  }
+  input[type="checkbox"] {
+    float:left;
+    margin:5px 5px 0 0;
+  }
+  textarea {
+    width:350px;
+    height:200px;
+    border:2px solid @orange;
+  }
+  .buttons {
+    font-size:16px;
+    input[type="submit"] {
+      font-size:16px;
+      color:#FFF;
+      border:none;
+      padding:10px 20px;
+      margin:0 10px 0 0;
+      background-color:@orange;
+    }
+    a {
+      text-decoration:none;
+      color:@orange;
+    }
   }
 }
 

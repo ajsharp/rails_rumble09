@@ -20,8 +20,10 @@ h1 {
   line-height: 100%;
 }
 h2 {
-  font-size: 1.4em;
+  font-size: 30px;
+  font-weight: bold;
   line-height: 100%;
+  color: #04a9b8;
 }
 h3 {
   font-size: 1.2em;
@@ -81,7 +83,7 @@ option { margin-right: 10px; }
   background-color: #ffffff;
   min-height: 500px;
 }
-#content-inner { padding: 35px 0 0 20px; }
+#content-inner { padding: 35px 0 20px 20px; }
 #nav p {
   text-align: right;
   padding: 0;
@@ -246,6 +248,69 @@ option { margin-right: 10px; }
 #footer p {
   font-weight: bold;
   color: #999999;
+}
+#errorExplanation {
+  width: 90%;
+  margin: 0 0 10px 30px;
+  border: 1px solid #cc0000;
+  background-color: #ffffdd;
+}
+#errorExplanation h2 {
+  font-size: 16px;
+  background-color: #cc0000;
+  color: #ffffff;
+  margin: 0;
+  padding: 5px 15px;
+}
+#errorExplanation p {
+  font-size: 16px;
+  margin: 0;
+  padding: 5px 15px;
+}
+#errorExplanation li {
+  padding: 0;
+  margin-left: 50px;
+}
+form li { margin: 0 0 10px 0; }
+form label {
+  font-size: 16px;
+  line-height: 150%;
+  font-weight: bold;
+  color: #04a9b8;
+}
+form input[type="text"] {
+  width: 250px;
+  font-size: 18px;
+  padding: 2px 5px;
+  border: 2px solid #ffa200;
+}
+form input[type="password"] {
+  width: 250px;
+  font-size: 18px;
+  padding: 2px 5px;
+  border: 2px solid #ffa200;
+}
+form input[type="checkbox"] {
+  float: left;
+  margin: 5px 5px 0 0;
+}
+form textarea {
+  width: 350px;
+  height: 200px;
+  border: 2px solid #ffa200;
+}
+form .buttons { font-size: 16px; }
+form .buttons input[type="submit"] {
+  font-size: 16px;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 10px 0 0;
+  background-color: #ffa200;
+}
+form .buttons a {
+  text-decoration: none;
+  color: #ffa200;
 }
 .clear { clear: both; }
 .outside_ribbon {

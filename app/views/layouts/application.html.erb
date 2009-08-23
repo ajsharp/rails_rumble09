@@ -31,15 +31,22 @@
   					  <li class="last"><%= link_or_active 'Logout', logout_path %></li>
     				</ul>
   			  </div><!-- nav -->
+  			<%- else -%>
+  			  <div id="nav" class="grid_8 omega">
+  			    <p>&nbsp;</p>
+  			    <ul>
+    				  <li><%= link_or_active 'Login', login_path  %></li>
+  					  <li class="last"><%= link_or_active 'Signup Now', signup_path %></li>
+    				</ul>
+  			  </div><!-- nav -->
 			  <%- end -%>
 			</div><!-- header -->
-			
-			<%= flash_messages %>
 			
 			<div id="content" class="grid_16 alpha omega clearfix">
 			  <%= render :partial => 'shared/subnav' %>
 			  <div class="clear"></div>
 			  <div id="content-inner">
+			    <%= flash_messages %>
 			    <%= yield :layout %>
 			  </div><!-- content-inner -->
 			</div><!-- content -->

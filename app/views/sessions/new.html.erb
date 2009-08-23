@@ -1,7 +1,6 @@
 <%= title "Login", :h2 %>
 <% form_tag session_path do %>
 	<fieldset>
-		<legend>Your Details</legend>
 		<ol>
 		  <li>
 				<%= label_tag 'email', 'Email Address' %>
@@ -12,8 +11,8 @@
 				<%= password_field_tag 'password', nil %>
 			</li>
 			<li>
-				<%= label_tag 'remember_me', 'Remember me' %>
 				<%= check_box_tag 'remember_me', '1', @remember_me %>
+				<%= label_tag 'remember_me', 'Remember me' %>
 			</li>
 		</ol>
 	</fieldset>

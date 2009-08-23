@@ -1,9 +1,9 @@
 <div id="subnav" class="grid_16 alpha omega clearfix">
-  <%- if @current_controller == 'site' or @current_controller == 'sessions' -%>
+  <%- if @current_controller == 'site' or @current_controller == 'sessions' or (@current_controller == 'users' and (@current_action == 'new' or @current_action == 'create')) -%>
     <h1>Welcome to Pass the Monkey</h1>
     <ul>
       <li><%= link_or_active 'Login', login_path %></li>
-      <li><%= link_or_active 'Signup Now', root_path %></li>
+      <li><%= link_or_active 'Signup Now', signup_path %></li>
     </ul>
   <%- end -%>
 </div><!-- subnav -->

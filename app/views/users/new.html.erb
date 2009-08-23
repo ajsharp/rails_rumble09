@@ -3,7 +3,6 @@
 <% form_for @user do |f| %>
 	<%= f.error_messages %>
 	<fieldset>
-		<legend>Your Details</legend>
 		<ol>
 		  <li>
 		    <%= f.label :name, 'Name' %>
@@ -25,5 +24,6 @@
 	</fieldset>
 	<div class="buttons">
 		<%= submit_tag 'Sign up' %>
+		<%= link_to 'Cancel', root_path %>
 	</div>
 <% end %>
